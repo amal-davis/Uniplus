@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UG Programme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'images/ug_programe.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+
+
+
+</head>
+<style>
+     .card {
+    background-color: #fff;
+    border: none; /* Remove border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.university-logo {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.tick-icon {
+    font-size: 24px;
+    color: #fdcf21; /* Change this to your desired color */
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin: 10px 0; /* Add margin to create some space */
+    flex-grow: 1; /* Allows the heading to take up remaining space */
+}
+
+.view-btn {
+    background-color: #fdcf21;
+    color: #fff;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 15px;
+    }
+}
+
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="#">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ug' %}">UG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'master' %}">PG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">SCHOLARSHIP</a></li>
+                </ul>
+                
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="#">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">OUR STORY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'branches' %}">OUR BRANCHES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container degree-section py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 pt-5">
+                <h2 class="" style="font-weight: 700;">{{ ugfirst.heading }}</h2>
+                <p>{{ ugfirst.text|safe }}</p>
+            </div>
+            <div class="col-md-6 text-center pt-5">
+                {% if ugfirst.image %}
+                    <img src="{{ ugfirst.image.url }}" alt="Graduation Cap and Diploma" class="img-fluid" style="border-radius: 20px;">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="container course-section py-5 mt-5">
+        <div class="row">
+            <div class="col-lg-6 content-left">
+                <h2>{{ course_section.heading }}</h2>
+                <p>{{ course_section.text|safe }}</p>
+            </div>
+            <div class="col-lg-6 content-right">
+                <div class="video-container">
+                    {% if course_section.video %}
+                    <video autoplay muted loop class="img-fluid">
+                        <source src="{{ course_section.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% else %}
+                    <p>No video available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 90px;">
+        <div class="row justify-content-center">
+            {% for university in latest_universities %}
+            <div class="col-md-3 pt-5 reveal">
+                <div class="card h-100 d-flex flex-column align-items-center justify-content-between">
+                    {% if university.logo %}
+                        <img src="{{ university.logo.url }}" alt="{{ university.name }} Logo" class="university-logo">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <i class="fas fa-check-circle tick-icon"></i>
+                    <h3>{{ university.name }}</h3>
+                    
+                    <!-- View Button -->
+                    <a href="{% url 'university_detail' university.id %}" class="btn mt-3 view-btn">View</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4 text-center">
+                <a href="{% url 'all_university' %}" class="btn btn-lg" style="background-color: #fdcf21; color: #fff;">View All Universities</a>
+            </div>
+        </div>
+    </div>
+    
+    
+       
+    <div class="container contact-section mt-5 py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 pt-5">
+                <div style="font-weight: 700; font-size: 18px;">
+                    <p style="font-weight: 700; font-size: 18px;">{{ contact_section.text|safe }}</p>
+                </div>
+                
+                <a href="{{ contact_section.button_link }}" class="btn btn-outline-primary contact-btn">{{ contact_section.button_text }} →</a>
+            </div>
+            <div class="col-md-6 text-center pt-5">
+                {% if contact_section.image %}
+                <img src="{{ contact_section.image.url }}" alt="Students">
+                {% else %}
+                <p>No image available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+        <div class="container benefits-section py-5 mt-5">
+            <h2 class="text-center mb-5">Benefits of foreign undergraduate degree</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-primary text-white">
+                            
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>High-Quality Education</h5>
+                            <p>Access to world-class education.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-danger text-white">
+                           
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>Cultural Exchange</h5>
+                            <p>Immersive experiences in diverse cultures.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-success text-white">
+                            
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>Language Skills</h5>
+                            <p>Enhanced language proficiency and communication skills.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-warning text-white">
+                           
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>Global Networking</h5>
+                            <p>Building a global network of friends.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 ">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-info text-white">
+                            
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>Personal Growth</h5>
+                            <p>Increased independence, self-confidence, and problem-solving skills.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 ">
+                    <div class="benefit-card h-100">
+                        <div class="benefit-icon bg-secondary text-white">
+                           
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h5>Better Job Opportunities</h5>
+                            <p>Improved career prospects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container combined-package-section py-5 mt-5">
+            <div class="row row-equal-height no-gutters">
+                <div class="col-md-6 left-side" style="background-image: url('static/images/student_image.png');">
+                    <div class="left-side-content py-5">
+                        <p>For select programs, we offer a combined package that integrates an undergraduate pathway program with an undergraduate degree into a single study plan. This allows you to receive one iCAS (integrated Confirmation of Acceptance for Studies) document, simplifying your visa application process for the entire duration of your studies.</p>
+                        <a href="{% url 'contact' %}" class="btn btn-custom">Consult An Expert →</a>
+                    </div>
+                </div>
+                <div class="col-md-6 right-side p-0">
+                    <img src="{% static 'images/student_image.png' %}" alt="Students">
+                </div>
+            </div>
+        </div>
+        <footer class="footer text-white mt-5">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col-md-2">
+                        <!-- <h6>Contact Us</h6> -->
+                        <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Offering</h6>
+                        <ul class="list-unstyled ">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'about' %}">Our Story</a></li>
+                            <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Our Countries</h6>
+                        <ul class="list-unstyled">
+                           
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Top Universities</h6>
+                        <ul class="list-unstyled">
+                          {% for university in universities|slice:":5" %}
+                            <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                      
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Test Prep</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                            <!-- <li><a href="#">GRE</a></li>
+                            <li><a href="#">TOEFL</a></li> -->
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="row py-2">
+                    <div class="col text-center social-icons">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+    <!-- Alphabet section in the footer -->
+    <div class="row py-2">
+        <div class="col text-center">
+            <h6 class="mb-5 mt-5">Universities</h6>
+            <div class="alphabet">
+                {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                    <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </footer>
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                ScrollReveal().reveal('.reveal', {
+                    origin: 'bottom',
+                    distance: '80px',
+                    duration: 1000,
+                    easing: 'ease-in-out',
+                    reset: true
+                });
+            });
+            document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        </script>
+    
+    </body>
+    
+    </html

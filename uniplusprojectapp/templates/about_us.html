@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'images/about.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="/">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Dropdown and Nav Links) -->
+                <ul class="navbar-nav">
+                    <!-- Our Program Dropdown -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{% url 'about' %}">Our Story</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog' %}">Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'branches' %}">Our Branches</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Program</a>
+                        <ul class="dropdown-menu" aria-labelledby="programDropdown">
+                            <li><a class="dropdown-item" href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a class="dropdown-item" href="{% url 'master' %}">PG Programme</a></li>
+                        </ul>
+                    </li>
+    
+                    <!-- About Us Dropdown -->
+                    
+    
+                    <!-- Scholarship Link -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">Scholarship</a></li>
+                </ul>
+    
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="/">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Contact Us and Sign Up Button) -->
+                <ul class="navbar-nav">
+                    <!-- Contact Us Link -->
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+    
+                    <!-- Sign Up Button -->
+                    <li class="nav-item">
+                        <a href="{% url 'signin_page' %}" class=" text-white nav-link btn book-now-btn">Sign Up</a>
+                    </li>
+                    <li class="nav-item mt-3"></li>
+                        <a href="http://scholarship.uniplusglobal.com/" class=" nav-link btn book-now-btn">Scholarship Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container degree-section py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 pt-5">
+                <h2 class="" style="font-weight: 700;">{{ story.title|linebreaksbr }}</h2>
+                <p class="mt-3">{{ story.paragraph|safe }}</p>
+            </div>
+            <div class="col-md-6 text-center pt-5">
+                {% if story.image %}
+                <img src="{{ story.image.url }}" alt="Graduation Cap and Diploma" class="img-fluid" style="border-radius: 20px;">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}            
+        </div>
+        </div>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="story-section">
+            <h2>{{ emp.title }}</h2>
+            <p>{{ emp.content|safe }}</p>
+        </div>
+    </div>
+    
+    <div class="container card-section mt-5 py-5">
+        <h2 class="text-center mb-5">Our comprehensive suite of services</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="custom-card h-100">
+                    <div class="icon">
+                        <!-- Replace with your icon -->
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                    <h3>{{ guide.heading }}</h3>
+                    <p>{{ guide.description|safe }}</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="custom-card h-100">
+                    <div class="icon">
+                        <!-- Replace with your icon -->
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>{{ university.heading }}</h3>
+                    <p>{{ university.description|safe }}</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="custom-card h-100">
+                    <div class="icon">
+                        <!-- Replace with your icon -->
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>{{ social.heading }}</h3>
+                    <p>{{ social.description|safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container affordability-section py-5 mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 affordability-content">
+                <div class="affordability-icon">
+                    <!-- Icon remains static as per your requirement -->
+                    <i class="fas fa-universal-access"></i>
+                </div>
+                <h3 class="affordability-heading">{{ affordability_section.heading }}</h3>
+                <p class="affordability-text">{{ affordability_section.text|safe }}</p>
+            </div>
+            <div class="col-md-6 affordability-image">
+                {% if affordability_section.image %}
+                    <img src="{{ affordability_section.image.url }}" alt="Affordability and Accessibility" class="img-fluid">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container mt-5">
+        <!-- Section 1 -->
+        <div class="row">
+            <div class="col-md-4 text-center mt-5 reveal" style="margin-top: 50px;">
+                <i class="fas fa-university icon"></i> <!-- Icon or Image -->
+            </div>
+            <div class="col-md-8 section-content mt-5 reveal">
+                <h2 class="section-title">{{ commit.heading }}</h2>
+                <p style="text-align: justify;">{{ commit.description|safe }}</p>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="row">
+            <div class="col-md-4 text-center mt-5 reveal" style="margin-top: 75px;">
+                <i class="fas fa-globe icon"></i> <!-- Icon or Image -->
+            </div>
+            <div class="col-md-8 section-content mt-5 reveal">
+                <h2 class="section-title">{{ branch.heading }}</h2>
+                <p style="text-align: justify;">{{ branch.description|safe }}</p>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="row">
+            <div class="col-md-4 text-center reveal" style="margin-top: 70px;">
+                <i class="fas fa-road icon"></i> <!-- Icon or Image -->
+            </div>
+            <div class="col-md-8 section-content mt-5 reveal">
+                <h2 class="section-title">{{ journey.heading }}</h2>
+                <p style="text-align: justify;">{{ journey.description|safe }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5" style="background-color: #000; margin-top: 90px;">
+        <div class="container mt-5">
+            <!-- Existing Sections -->
+            <!-- ... -->
+
+            <!-- New List Section -->
+            <div class="list-section">
+                <div class="row">
+                    <div class="col-md-8  pt-5">
+                    {% if emps.image %}
+                        <img src="{{ emps.image.url }}" alt="empowering_image" class="img-fluid" style="border-radius: 30px;">
+                        {% else %}
+                        <p>No Image</p>
+                    {% endif %}
+                    </div>
+                    <div class="col-md-4 pt-5">
+                        <h2 class="section-title">{{ emps.title }}</h2>
+                        <p >{{ emps.paragraph|safe }}</p>
+                        <div class="list-group">
+                            <div class="list-item reveal">
+                                <i class="fas fa-check list-icon"></i>
+                                <p >{{ emps.application|safe }}</p>
+                            </div>
+                            <div class="list-item reveal">
+                                <i class="fas fa-check list-icon"></i>
+                                <p >{{ emps.university|safe }}</p>
+                            </div>
+                            <div class="list-item reveal">
+                                <i class="fas fa-check list-icon"></i>
+                                <p>{{ emps.accomodation|safe }}</p>
+                            </div>
+                            <div class="list-item reveal">
+                                <i class="fas fa-check list-icon"></i>
+                                <p >{{ emps.social|safe }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="team-section container mt-5">
+        <div class="container mt-5 ">
+            <div class="uniplus-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6 uniplus-content">
+                        <h2 class="uniplus-heading">{{ uniplus_section.heading }}</h2>
+                        <p class="uniplus-text">{{ uniplus_section.text|safe }}</p>
+                    </div>
+                    <div class="col-md-6 uniplus-image text-center">
+                        {% if uniplus_section.image %}
+                            <img src="{{ uniplus_section.image.url }}" alt="UNIPLUS GIF" class="img-fluid">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            {% for member in team_members %}
+            <div class="col-md-4 pt-5 team-card reveal">
+                <div class="card custom-cards">
+                    <div class="card-body text-center">
+                    {% if member.image %}
+                        <img src="{{ member.image.url }}" alt="{{ member.name }}" class="img-fluid">
+                     {% else %}
+                        <p>No Image</p>
+                    {% endif %}
+                        <h5 class="card-title">{{ member.name }}</h5>
+                        <p class="card-text">{{ member.position }}</p>
+                        <p class="card-text">{{ member.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+      
+    </div>
+   
+    <div class="country-section container" style="margin-top: 70px;">
+        <h2 class="text-center">Discover Best Countries For Indian Students</h2>
+        <div class="row mt-5">
+            {% for country in countries %}
+            <div class="col-md-4 country-card pt-5 reveal">
+                <a href="{% url 'country_detail' country.slug %}">{{ country.name }}</a>
+                                    <div class="card" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 0px;">
+                        <div class="image-wrapper">
+                            {% if country.image %}
+                            <img src="{{ country.image.url }}" class="card-img-top" alt="{{ country.name }}">
+                            {% else %}
+                            <p>No image available</p>
+                            {% endif %}
+                            <div class="flag-icon">
+                                {% if country.flag_icon %}
+                                <img src="{{ country.flag_icon.url }}" alt="{{ country.name }} Flag">
+                                {% else %}
+                                <p>No flag available</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <h5 class="card-title">{{ country.name }}</h5>
+                            <span class="btn btn-link" style="text-decoration: none; color: #fdcf21;">Learn More</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container combined-package-section py-5 mt-5">
+        <div class="row row-equal-height no-gutters">
+            <div class="col-md-6 left-side" style="background-image: url('static/images/student_image.png');">
+                <div class="left-side-content py-5">
+                    <h2 style="font-weight: 700;">Embark on your mission at <br> UNIPLUS today.</h2>
+                    <a href="{% url 'contact' %}" class="btn btn-custom">Consult An Expert →</a>
+                </div>
+            </div>
+            <div class="col-md-6 right-side p-0">
+                <img src="{% static 'images/student_image.png' %}" alt="Students">
+            </div>
+        </div>
+    </div>
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <!-- <h6>Contact Us</h6> -->
+                    <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                        <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Our Countries</h6>
+                    <ul class="list-unstyled">
+                        
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                      {% for university in universities|slice:":5" %}
+                        <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <!-- <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li> -->
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+<!-- Alphabet section in the footer -->
+<div class="row py-2">
+    <div class="col text-center">
+        <h6 class="mb-5 mt-5">Universities</h6>
+        <div class="alphabet">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+        </div>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+            document.addEventListener("DOMContentLoaded", function () {
+            ScrollReveal().reveal('.reveal', {
+                origin: 'bottom',
+                distance: '80px',
+                duration: 1000,
+                easing: 'ease-in-out',
+                reset: true
+            });
+        });
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+</script>
+</body>
+</html>

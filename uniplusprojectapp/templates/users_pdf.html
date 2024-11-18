@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registered Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Profile</th>
+                <th>Additional Info</th>
+                <th>Education</th>
+                <th>Academic Interests</th>
+                <th>Travel History</th>
+                <th>Mandatory Documents</th>
+                <th>Referee Details</th>
+                <th>Non-Mandatory Documents</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_data in users_data %}
+                <tr>
+                    <td>{{ user_data.user.username }}</td>
+                    <td>
+                        <p><strong>Phone:</strong> {{ user_data.user_profile.phone_number }}</p>
+                        <p><strong>Nationality:</strong> {{ user_data.user_profile.nationality }}</p>
+                        <p><strong>DOB:</strong> {{ user_data.user_profile.dob }}</p>
+                        <p><strong>Study Country:</strong> {{ user_data.user_profile.study_country }}</p>
+                        {% if user_data.user_profile.profile_picture %}
+                            <p><img src="{{ user_data.user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-img"></p>
+                        {% else %}
+                            <p>No image</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <p><strong>Family Name:</strong> {{ user_data.user_additional_info.family_name }}</p>
+                        <p><strong>Gender:</strong> {{ user_data.user_additional_info.gender }}</p>
+                        <p><strong>Country of Birth:</strong> {{ user_data.user_additional_info.country_of_birth }}</p>
+                        <p><strong>Native Language:</strong> {{ user_data.user_additional_info.native_language }}</p>
+                    </td>
+                    <td>
+                        {% for education in user_data.educations %}
+                            <p><strong>Country:</strong> {{ education.country }}</p>
+                            <p><strong>Institution:</strong> {{ education.institution }}</p>
+                            <p><strong>Course:</strong> {{ education.course }}</p>
+                            <p><strong>Level:</strong> {{ education.level_of_study }}</p>
+                            <p><strong>Start Date:</strong> {{ education.start_date }}</p>
+                            <p><strong>End Date:</strong> {{ education.end_date }}</p>
+                            <hr>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for interest in user_data.academic_interests %}
+                            <p><strong>Level:</strong> {{ interest.level_of_study }}</p>
+                            <p><strong>Discipline:</strong> {{ interest.discipline }}</p>
+                            <p><strong>Programme:</strong> {{ interest.programme }}</p>
+                            <p><strong>Start Date:</strong> {{ interest.start_date }}</p>
+                            <p><strong>Location:</strong> {{ interest.location }}</p>
+                            <p><strong>English Test:</strong> {{ interest.english_test }}</p>
+                            <p><strong>Other Test:</strong> {{ interest.other_test }}</p>
+                            <hr>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <p><strong>Applied Permission:</strong> {{ user_data.travel_history.applied_permission }}</p>
+                        <p><strong>Visa Countries:</strong> {{ user_data.travel_history.visa_countries }}</p>
+                        <p><strong>Visa Rejections:</strong> {{ user_data.travel_history.visa_rejections }}</p>
+                    </td>
+                    <td>
+                        {% for doc in user_data.mandatory_documents %}
+                            <p>
+                                {% if doc.cv_resume %}
+                                    <a href="{{ doc.cv_resume.url }}" download>CV/Resume</a>
+                                {% else %}
+                                    No file
+                                {% endif %}
+                            </p>
+                            <p>
+                                {% if doc.passport_copy %}
+                                    <a href="{{ doc.passport_copy.url }}" download>Passport Copy</a>
+                                {% else %}
+                                    No file
+                                {% endif %}
+                            </p>
+                            <p>
+                                {% if doc.transcript %}
+                                    <a href="{{ doc.transcript.url }}" download>Transcript</a>
+                                {% else %}
+                                    No file
+                                {% endif %}
+                            </p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for referee in user_data.referee_details %}
+                            <p><strong>Name:</strong> {{ referee.name }}</p>
+                            <p><strong>Position:</strong> {{ referee.position }}</p>
+                            <p><strong>Email:</strong> {{ referee.email }}</p>
+                            <p><strong>Relationship:</strong> {{ referee.relationship }}</p>
+                            <hr>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for doc in user_data.non_mandatory_documents %}
+                            <p>
+                                {% if doc.high_school_docs %}
+                                    <a href="{{ doc.high_school_docs.url }}" download>High School Docs</a>
+                                {% else %}
+                                    No file
+                                {% endif %}
+                            </p>
+                            <p>
+                                {% if doc.application_screenshots %}
+                                    <a href="{{ doc.application_screenshots.url }}" download>Application Screenshots</a>
+                                {% else %}
+                                    No file
+                                {% endif %}
+                            </p>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

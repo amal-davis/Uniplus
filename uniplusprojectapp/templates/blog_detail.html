@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     
+    
+    <link rel="stylesheet" href="{% static 'images/blogs.css' %}">
+    <title>{{ blog.meta_title|default:blog.title }}</title>
+    <meta name="description" content="{{ blog.meta_description }}">
+</head>
+<style>
+  
+/* .header {
+            background-image: url('path/to/your/background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: rgb(8, 8, 8);
+        } */
+
+        .blog-details {
+            padding: 50px 0;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .recent-posts {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .recent-posts h5 {
+            margin-bottom: 15px;
+        }
+
+        .recent-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recent-posts ul li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .recent-posts ul li:last-child {
+            border-bottom: none;
+        }
+
+        .recent-posts ul li a {
+            text-decoration: none;
+            color: #343a40;
+        }
+
+        .recent-posts ul li a:hover {
+            text-decoration: underline;
+        }
+        .blog-content table {
+    width: 100%;
+    border-collapse: collapse !important;
+    table-layout: fixed;
+}
+
+.blog-content th, .blog-content td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+
+</style>
+<body>
+    <header class="header">
+        <div class="header-row container" role="navigation" aria-label="Main">
+            <div class="header-left">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'images/logo.png.png' %}" alt="" style="width: 100px;">
+
+                    </a>
+                </div>
+            </div>
+            <div class="header-right">
+                <ul class="main-menu">
+                    <li class="menu-item"><a href="/">Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Study Abroad +</a>
+                        <div class="mega-menu-wrapper slideInUp">
+                            <div class="mega-menu-col">
+                                <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid">
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                   
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">About Us +</a>
+                        <div class="sub-menu-wrapper slideInUp">
+                            <ul class="sub-menu">
+                        <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <a href="#" id="hamburger-icon" class="mobile-toggler" aria-label="Mobile Menu"><i class="fas fa-bars"></i></a>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="mobile-menu hidden slideInDown">
+                <ul>
+                    <li class="menu-item"><a href="/" >Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Mega menu +</a>
+                        <div class="mega-menu-wrapper">
+                            <div class="mega-menu-col">
+                                <!-- <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid"> -->
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                   
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">Services +</a>
+                        <div class="sub-menu-wrapper">
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>   
+    <!-- <header class="header">
+        <h1>Blog Details</h1>
+    </header> -->
+
+    <section class="blog-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{ blog.image.url }}" class="blog-image" alt="Blog Image">
+                    <h2 class="blog-title">{{ blog.title }}</h2>
+                    <p class="blog-date"><i class="fas fa-calendar-alt"></i> {{ blog.date }}</p>
+                    <p class="blog-content">{{ blog.paragraph|safe }}</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <!-- <h6>Contact Us</h6> -->
+                    <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                        <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Our Countries</h6>
+                    <ul class="list-unstyled">
+                        
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                      {% for university in universities|slice:":5" %}
+                        <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <!-- <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li> -->
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+<!-- Alphabet section in the footer -->
+<div class="row py-2">
+    <div class="col text-center">
+        <h6 class="mb-5 mt-5">Universities</h6>
+        <div class="alphabet">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

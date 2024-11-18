@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container-fluid {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table thead th {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+            border: none;
+        }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination .page-link {
+            color: #007bff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5">
+            <div class="d-flex justify-content-between mb-4">
+                <h1 class="text-center">Registered Users</h1>
+                <div>
+                    <a href="{% url 'export_users_pdf' %}" class="btn btn-danger">
+                        <i class="fas fa-file-pdf"></i> Export to PDF
+                    </a>
+                    <a href="{% url 'export_users_excel' %}" class="btn btn-success">
+                        <i class="fas fa-file-excel"></i> Export to Excel
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Profile</th>
+                        <th>Additional Info</th>
+                        <th>Education</th>
+                        <th>Academic Interests</th>
+                        <th>Travel History</th>
+                        <th>Mandatory Documents</th>
+                        <th>Referee Details</th>
+                        <th>Non-Mandatory Documents</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user_data in users_data %}
+                        <tr>
+                            <td>{{ user_data.user.username }}</td>
+                            <td>
+                                <p><strong>Phone:</strong> {{ user_data.user_profile.phone_number }}</p>
+                                <p><strong>Nationality:</strong> {{ user_data.user_profile.nationality }}</p>
+                                <p><strong>DOB:</strong> {{ user_data.user_profile.dob }}</p>
+                                <p><strong>Study Country:</strong> {{ user_data.user_profile.study_country }}</p>
+                                {% if user_data.user_profile.profile_picture %}
+                                <p><img src="{{ user_data.user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-img"></p>
+                            {% else %}
+                                <p>No image</p>
+                            {% endif %}
+                            
+                            </td>
+                            <td>
+                                <p><strong>Family Name:</strong> {{ user_data.user_additional_info.family_name }}</p>
+                                <p><strong>Gender:</strong> {{ user_data.user_additional_info.gender }}</p>
+                                <p><strong>Country of Birth:</strong> {{ user_data.user_additional_info.country_of_birth }}</p>
+                                <p><strong>Native Language:</strong> {{ user_data.user_additional_info.native_language }}</p>
+                                <!-- Add other fields similarly -->
+                            </td>
+                            <td>
+                                {% for education in user_data.educations %}
+                                    <p><strong>Country:</strong> {{ education.country }}</p>
+                                    <p><strong>Institution:</strong> {{ education.institution }}</p>
+                                    <p><strong>Course:</strong> {{ education.course }}</p>
+                                    <p><strong>Level:</strong> {{ education.level_of_study }}</p>
+                                    <p><strong>Start Date:</strong> {{ education.start_date }}</p>
+                                    <p><strong>End Date:</strong> {{ education.end_date }}</p>
+                                    <hr>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for interest in user_data.academic_interests %}
+                                    <p><strong>Level:</strong> {{ interest.level_of_study }}</p>
+                                    <p><strong>Discipline:</strong> {{ interest.discipline }}</p>
+                                    <p><strong>Programme:</strong> {{ interest.programme }}</p>
+                                    <p><strong>Start Date:</strong> {{ interest.start_date }}</p>
+                                    <p><strong>Location:</strong> {{ interest.location }}</p>
+                                    <p><strong>English Test:</strong> {{ interest.english_test }}</p>
+                                    <p><strong>Other Test:</strong> {{ interest.other_test }}</p>
+                                    <hr>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <p><strong>Applied Permission:</strong> {{ user_data.travel_history.applied_permission }}</p>
+                                <p><strong>Visa Countries:</strong> {{ user_data.travel_history.visa_countries }}</p>
+                                <p><strong>Visa Rejections:</strong> {{ user_data.travel_history.visa_rejections }}</p>
+                            </td>
+                            <td>
+                                {% for doc in user_data.mandatory_documents %}
+    <p>
+        {% if doc.cv_resume %}
+            <a href="{{ doc.cv_resume.url }}" download>CV/Resume</a>
+        {% else %}
+            No file
+        {% endif %}
+    </p>
+
+    <p>
+        {% if doc.passport_copy %}
+            <a href="{{ doc.passport_copy.url }}" download>Passport Copy</a>
+        {% else %}
+            No file
+        {% endif %}
+    </p>
+
+    <p>
+        {% if doc.transcript %}
+            <a href="{{ doc.transcript.url }}" download>Transcript</a>
+        {% else %}
+            No file
+        {% endif %}
+    </p>
+{% endfor %}
+
+                            </td>
+                            <td>
+                                {% for referee in user_data.referee_details %}
+                                    <p><strong>Name:</strong> {{ referee.name }}</p>
+                                    <p><strong>Position:</strong> {{ referee.position }}</p>
+                                    <p><strong>Email:</strong> {{ referee.email }}</p>
+                                    <p><strong>Relationship:</strong> {{ referee.relationship }}</p>
+                                    <hr>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for doc in user_data.non_mandatory_documents %}
+    <p>
+        {% if doc.high_school_docs %}
+            <a href="{{ doc.high_school_docs.url }}" download>High School Docs</a>
+        {% else %}
+            No file
+        {% endif %}
+    </p>
+
+    <p>
+        {% if doc.application_screenshots %}
+            <a href="{{ doc.application_screenshots.url }}" download>Application Screenshots</a>
+        {% else %}
+            No file
+        {% endif %}
+    </p>
+
+    <!-- Add other fields similarly with the same pattern -->
+{% endfor %}
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

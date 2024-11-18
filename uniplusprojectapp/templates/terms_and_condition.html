@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Slavery Policy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'images/about.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .policy-section {
+            padding: 50px 0;
+            background-color: #fff;
+        }
+
+        .policy-heading h2 {
+            color: #343a40;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .policy-content h4 {
+            color: #495057;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .policy-content p {
+            text-align: justify;
+            margin-bottom: 15px;
+            color: #6c757d;
+        }
+
+        .policy-content ul {
+            padding-left: 20px;
+        }
+
+        .policy-content ul li {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .policy-footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .policy-content h4 {
+                font-size: 1.2rem;
+            }
+
+            .policy-content p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="/">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Dropdown and Nav Links) -->
+                <ul class="navbar-nav">
+                    <!-- Our Program Dropdown -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{% url 'about' %}">Our Story</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog' %}">Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'branches' %}">Our Branches</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Program</a>
+                        <ul class="dropdown-menu" aria-labelledby="programDropdown">
+                            <li><a class="dropdown-item" href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a class="dropdown-item" href="{% url 'master' %}">PG Programme</a></li>
+                        </ul>
+                    </li>
+    
+                    <!-- About Us Dropdown -->
+                    
+    
+                    <!-- Scholarship Link -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">Scholarship</a></li>
+                </ul>
+    
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="/">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Contact Us and Sign Up Button) -->
+                <ul class="navbar-nav">
+                    <!-- Contact Us Link -->
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+    
+                    <!-- Sign Up Button -->
+                    <li class="nav-item">
+                        <a href="{% url 'signin_page' %}" class=" text-white nav-link btn book-now-btn">Sign Up</a>
+                    </li>
+                    <li class="nav-item mt-3"></li>
+                        <a href="http://scholarship.uniplusglobal.com/" class=" nav-link btn book-now-btn">Scholarship Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- Modern Slavery Policy Section -->
+<section class="policy-section mt-5">
+    <div class="container">
+        <!-- Heading -->
+        <div class="policy-heading">
+            <h2>Modern Slavery Policy</h2>
+        </div>
+
+        <!-- Policy Content -->
+        <div class="policy-content">
+            <h4>1. Purpose</h4>
+            <p>This Modern Slavery Policy outlines the commitment of Greendome Global Education Pvt Ltd to preventing modern slavery and human trafficking in all aspects of our operations and supply chains. We are dedicated to ensuring that no one working with or for our company is exploited or subjected to forced labour.</p>
+
+            <h4>2. Scope</h4>
+            <p>This policy applies to all employees, contractors, suppliers, service providers, and partners associated with Greendome Global Education Pvt Ltd. We expect all parties who work with us to comply with our values and demonstrate their commitment to eliminating modern slavery in their practices.</p>
+
+            <h4>3. Our Commitment</h4>
+            <p>At Greendome Global Education Pvt Ltd, we commit to:</p>
+            <ul>
+                <li>Ensuring that no modern slavery, human trafficking, or forced labour occurs within our business operations or supply chains.</li>
+                <li>Conducting regular assessments to identify risks of modern slavery and implementing measures to mitigate these risks.</li>
+                <li>Fully complying with Indian laws and international regulations concerning modern slavery and human rights.</li>
+                <li>Fostering an environment of transparency, integrity, and ethical business conduct throughout our organisation and partners.</li>
+            </ul>
+
+            <h4>4. Due Diligence</h4>
+            <p>To prevent modern slavery within our business, we follow these due diligence practices:</p>
+            <ul>
+                <li>Evaluating and monitoring our supply chain and partners to ensure they meet our ethical standards.</li>
+                <li>Requiring suppliers and contractors to confirm their commitment to combating modern slavery through written agreements.</li>
+                <li>Performing regular audits and reviews of our supply chain to detect and eliminate any risks of modern slavery.</li>
+            </ul>
+
+            <h4>5. Training and Awareness</h4>
+            <p>Greendome Global Education Pvt Ltd provides training and resources to all employees to raise awareness about modern slavery risks, including:</p>
+            <ul>
+                <li>Educating staff on identifying signs of modern slavery and human trafficking.</li>
+                <li>Equipping them with the knowledge to take appropriate action when concerns arise.</li>
+                <li>Promoting a culture of vigilance and responsibility across our team and partners.</li>
+            </ul>
+
+            <h4>6. Reporting and Compliance</h4>
+            <p>We encourage all employees, contractors, and stakeholders to report any concerns related to modern slavery. Reports can be made anonymously, and all information will be treated with confidentiality. Our approach includes:</p>
+            <ul>
+                <li>Promptly investigating reports and ensuring the safety and protection of affected individuals.</li>
+                <li>Taking corrective actions, including terminating contracts with suppliers found to be involved in modern slavery.</li>
+                <li>Collaborating with relevant authorities to address any legal violations or misconduct.</li>
+            </ul>
+
+            <h4>7. Responsibility</h4>
+            <p>The management of Greendome Global Education Pvt Ltd is responsible for implementing and monitoring this policy. All employees and business partners are required to comply with this policy, and non-compliance will result in appropriate disciplinary actions.</p>
+
+            <h4>8. Review</h4>
+            <p>This Modern Slavery Policy will be reviewed annually to ensure that it remains effective in combating modern slavery and protecting human rights within our operations and supply chains.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="policy-footer">
+            <p>&copy; 2024 Greendome Global Education Pvt Ltd. All Rights Reserved.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+</script>
+
+</body>
+</html>

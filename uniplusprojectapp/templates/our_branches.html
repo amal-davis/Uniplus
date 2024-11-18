@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Branches</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'images/branches.css' %}">
+</head>
+<style>
+   
+</style>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="/">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Dropdown and Nav Links) -->
+                <ul class="navbar-nav">
+                    <!-- Our Program Dropdown -->
+
+                  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Program</a>
+                        <ul class="dropdown-menu" aria-labelledby="programDropdown">
+                            <li><a class="dropdown-item" href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a class="dropdown-item" href="{% url 'master' %}">PG Programme</a></li>
+                            {% for university in universities|slice:":5" %}
+                        <li><a class="dropdown-item" href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                        </ul>
+                    </li>
+    
+                    <!-- About Us Dropdown -->
+                    
+    
+                    <!-- Scholarship Link -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">Scholarship</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{% url 'about' %}">Our Story</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog' %}">Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'branches' %}">Our Branches</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+    
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="/">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Contact Us and Sign Up Button) -->
+                <ul class="navbar-nav">
+                    <!-- Contact Us Link -->
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+    
+                    <!-- Sign Up Button -->
+                    <li class="nav-item">
+                        <a href="{% url 'signin_page' %}" class=" text-white nav-link btn book-now-btn">Sign Up</a>
+                    </li>
+                    <li class="nav-item mt-3"></li>
+                        <a href="http://scholarship.uniplusglobal.com/" class=" nav-link btn book-now-btn">Scholarship Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <h2 class="text-center">OUR BRANCHES</h2>
+    </div>
+    <!-- <div class="container">
+        <div class="map-container">
+            <img src="" class="img-fluid">
+
+            <div class="point arabia tippy" title="Saudi Arabia"></div>
+            <div class="point turquia tippy" title="UK"></div>
+            <div class="point china tippy" title="India"></div>
+            <div class="point australia tippy" title="Australia"></div>
+        </div>
+    </div> -->
+
+    <div class="map-container">
+        <!-- The map image -->
+        <img src="{% static 'images/world-map.png' %}" alt="World Map" class="map-image img-fluid">
+    
+        <!-- Location markers -->
+        <div class="location-marker marker-uk"></div>
+        <div class="tooltip-country" style="top: 23%; left: 45%;">United Kingdom</div>
+    
+        <div class="location-marker marker-uae"></div>
+        <div class="tooltip-country" style="top: 43%; left: 57%;">Saudi Arabia</div>
+    
+        <div class="location-marker marker-india"></div>
+        <div class="tooltip-country" style="top: 45%; left: 68%;">India</div>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Address Column 1 -->
+            <div class="col-md-6">
+                <div class="address-box">
+                    <div class="address-title">Main Office</div>
+                    4th Floor, Thottungal Building,<br>
+                    Durbar Hall Rd, Jos Junction, <br>
+                    Marine Drive, Ernakulam,<br>
+                    Kerala 682011
+                </div>
+            </div>
+    
+            <!-- Address Column 2 -->
+            <div class="col-md-6">
+                <div class="address-box">
+                    <div class="address-title">London Office</div>
+                    Office No 527 5th Floor Building 7,<br>
+                    566 Chiswick High Road,<br>
+                    Chiswick Park London W4 5YG,<br>
+                    UK
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container" style="text-align: justify;">
+        <p class="text-section">At Uniplus, we are dedicated to guiding students towards achieving
+            their educational dreams abroad. With our extensive network of branches worldwide, we provide expert
+            consultancy services to help students navigate the complexities of international education. Here’s a glimpse
+            of our global presence</p>
+        <p class="mt-3">At Uniplus, we believe in transforming dreams into reality. Our global presence
+            allows us to provide localized support, ensuring that every student gets the best possible guidance and
+            assistance. Visit any of our branches to meet our team and start your journey towards an international
+            education.</p>
+    </div>
+
+    
+
+
+
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <!-- <h6>Contact Us</h6> -->
+                    <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                        <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Our Countries</h6>
+                    <ul class="list-unstyled">
+                       
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                      {% for university in universities|slice:":5" %}
+                        <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <!-- <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li> -->
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+<!-- Alphabet section in the footer -->
+<div class="row py-2">
+    <div class="col text-center">
+        <h6 class="mb-5 mt-5">Universities</h6>
+        <div class="alphabet">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+        </div>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@1.1.3/dist/tippy.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            tippy('.tippy', {
+                theme: 'light',
+                size: 'big',
+                arrow: true
+            })
+        });
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

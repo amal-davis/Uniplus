@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact US</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'images/contact_us.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="#">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ug' %}">UG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'master' %}">PG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">SCHOLARSHIP</a></li>
+                </ul>
+                
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="#">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">OUR STORY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'branches' %}">OUR BRANCHES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-image">
+      <div class="bg-text">
+          <h1>Contact Us</h1>
+          
+      </div>
+  </div>
+    <div class="container contact-page mt-5 py-5 reveal" >
+        <div class="row">
+          <div class="col-md-6 left-section pt-5">
+            <div class="contact-section">
+                <h1>Contact</h1>
+                <p>Bring visibility and control to your organization’s carbon footprint.</p>
+            </div>
+        <!-- <div class="image-sections mt-5">
+          <img src="{% static 'images/contact-us-images.jpg' %}" alt="contact-image" class="img-fluid" style="border-radius: 15px;">
+        </div> -->
+        <!-- <address>
+          <strong>Our Office:</strong><br>
+          123 Education Lane, Knowledge City, EduState, 45678<br>
+          <strong>Email:</strong> <a href="mailto:info@educationconsultancy.com">info@educationconsultancy.com</a><br>
+          <strong>Phone:</strong> +123-456-7890
+        </address> -->
+          </div>
+          <div class="col-md-6 right-section pt-5 reveal">
+            <form action="{% url 'contact_page_submit' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="mb-3">Name</label>
+                    <input type="text" class="form-control" id="name" name="name"  required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="mb-3">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email"  required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="mb-3">Contact Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone"  required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="mb-3">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4"  required></textarea>
+                </div>
+                <button class="submit-message-button">
+                    Submit Message
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+        </div>
+        </div>
+      </div>
+      <div class="container text-center my-5">
+        <h2>Keep Up With Us On...</h2>
+        <div class="row mt-4 justify-content-center">
+            <div class="col-2 col-sm-1 social-icon">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="col-2 col-sm-1 social-icon">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="col-2 col-sm-1 social-icon">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-2 col-sm-1 social-icon">
+                <a href="tel:+1234567890"><i class="fas fa-phone-alt"></i></a>
+            </div>
+            <!-- Replace Twitter with WhatsApp Icon -->
+            <div class="col-2 col-sm-1 social-icon">
+                <a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i></a>
+            </div>
+    
+        </div>
+    </div>
+     
+    </div>
+    <div class="container mt-5">
+      <div id="map-container">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0863389464225!2d144.95373631531673!3d-37.816218979751955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577339c536e4a0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1613969802237!5m2!1sen!2sau"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+    </div>
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <!-- <h6>Contact Us</h6> -->
+                    <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                        <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Our Countries</h6>
+                    <ul class="list-unstyled">
+                        {% for country in countries %}
+                        <li><a href="{% url 'country_detail' country_name=country.name %}">Study in {{ country.name }}</a></li>
+                            {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                      {% for university in universities|slice:":5" %}
+                        <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <!-- <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li> -->
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+<!-- Alphabet section in the footer -->
+<div class="row py-2">
+    <div class="col text-center">
+        <h6 class="mb-5 mt-5">Universities</h6>
+        <div class="alphabet">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+        </div>
+    </footer>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://unpkg.com/scrollreveal"></script>
+<script>
+          document.addEventListener("DOMContentLoaded", function () {
+            ScrollReveal().reveal('.reveal', {
+                origin: 'bottom',
+                distance: '80px',
+                duration: 1000,
+                easing: 'ease-in-out',
+                reset: true
+            });
+        });
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+</script>
+
+</body>
+</html>

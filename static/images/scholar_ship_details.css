@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: 40px; /* Ensure content starts below the fixed navbar */
+}
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #fdcf21;
+}
+
+/* Dropdown styling */
+.navbar-nav .dropdown-menu {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.navbar-nav .dropdown-item {
+  color: #000;
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+
+/* Sign Up Button */
+.book-now-btn {
+  background-color: #fdcf21;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.book-now-btn:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+/* Show dropdown on hover for large screens */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+  }
+
+  /* Prevent dropdown from closing when the mouse leaves the toggle */
+  .navbar-nav .dropdown-menu {
+      margin-top: 0; /* Align the dropdown with the parent */
+  }
+}
+
+/* Remove focus outline when clicking dropdown */
+.nav-item .nav-link:focus {
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .navbar-nav {
+      flex-direction: row;
+  }
+}
+
+.bg-image {
+    position: relative;
+    background-image: url(scholar_ship_detail_cover.png); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .scholarship-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Adjust height as needed */
+}
+
+.scholarship-title {
+    margin-bottom: 20px;
+}
+
+.scholarship-logo img {
+    max-width: 100px; /* Adjust the size of the logo as needed */
+}
+.scholarship-location {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50; /* Change the color to highlight the location */
+}
+.university-image-section {
+  margin-top: 40px;
+}
+
+.university-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Optional: adds rounded corners to the image */
+}
+/* General container styling */
+
+
+/* Styling for each content section */
+.content-section {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+/* Heading style */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+/* Paragraph style */
+.content-section p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Optional: Adjust link color if there are any links within the content */
+.content-section a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.content-section a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  padding: 40px 0;
+  background-color: #0D0F17;
+}
+
+.footer h6 {
+font-weight: bold;
+}
+
+.footer a {
+color: #ffffff;
+text-decoration: none;
+}
+
+.footer a:hover {
+text-decoration: underline;
+}
+
+.footer ul {
+margin-bottom: 20px; /* Add margin between the lists */
+}
+
+.footer ul li {
+margin-bottom: 10px; /* Add margin between the list items */
+}
+
+.alphabet {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.alphabet a {
+margin: 0 5px;
+color: #ffffff;
+font-weight: bold;
+position: relative;
+}
+
+.alphabet a:not(:last-child)::after {
+content: '|';
+color: #ffffff;
+margin-left: 10px;
+}
+
+.social-icons a {
+font-size: 24px; /* Increase font size for social media icons */
+margin-right: 20px; /* Add gap between social media icons */
+}
+
+.social-icons a:last-child {
+margin-right: 0; /* Remove margin for the last icon */
+}

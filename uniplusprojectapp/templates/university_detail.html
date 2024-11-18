@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            color: #343a40;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #007bff;
+        }
+        .list-group-item {
+            background: #e9ecef;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .list-group-item:hover {
+            background: #dee2e6;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>{{ university.name }}</h2>
+        <p>{{ university.description|safe }}</p>
+    
+        <h3>Courses</h3>
+        <ul class="list-group">
+            {% for course in courses %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ course.name }}</span>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="course_id" value="{{ course.id }}">
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

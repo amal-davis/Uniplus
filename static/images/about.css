@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: 40px; /* Ensure content starts below the fixed navbar */
+}
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+/* Remove the border around the menu icon */
+
+
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #fdcf21; /* Change color on hover */
+}
+
+/* Side menu and overlay styling */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease;
+  z-index: 9999;
+  padding-top: 60px;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 9998;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Close button styling */
+.close-btn {
+  padding: 10px;
+}
+
+.close-btn .btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #000;
+}
+
+
+  .book-now-btn {
+      background-color: #fdcf21;
+      color: #fff;
+      border-radius: 20px;
+      padding: 8px 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-left: 20px;
+      text-decoration: none;
+  }
+
+  .book-now-btn:hover {
+      background-color: #fdcf21;
+      color: #fff;
+  }
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .side-menu, .menu-overlay, .navbar-toggler {
+      display: none; /* Hide side menu and toggle on larger screens */
+  }
+
+  .navbar-nav {
+      flex-direction: row;
+  }
+}
+
+/* .body-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  padding: 0 30px;
+}
+.body-text div{
+  font-size: 45px;
+  font-weight: 600;
+} */
+.custom-card {
+  background-color: #f8f9fa; /* Light grey background color */
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.custom-card:hover {
+  transform: translateY(-10px);
+}
+.custom-card .icon {
+  font-size: 2rem;
+  color: #fdcf21; /* Icon color */
+  margin-bottom: 15px;
+}
+.custom-card h3 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.custom-cards{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.custom-card p {
+  color: #555; /* Text color */
+}
+.affordability-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.affordability-icon {
+  font-size: 2rem;
+  color: #fdcf21; /* Icon color */
+  margin-bottom: 15px;
+}
+.affordability-heading {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.affordability-text {
+  color: #555; /* Text color */
+}
+.affordability-image img {
+  border-radius: 15px;
+  width: 100%;
+  height: auto;
+}
+.uniplus-section {
+  background-color: #f8f9fa; /* Light grey background color */
+  padding: 50px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+.uniplus-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.uniplus-heading {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.uniplus-text {
+  color: #555; /* Text color */
+}
+.uniplus-image img {
+  border-radius: 15px;
+  width: 100%;
+  height: auto;
+}
+.left-side {
+  position: relative;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px 0 0 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.left-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 123, 255, 0.8); /* Blue overlay with 80% opacity */
+  border-radius: 15px 0 0 15px;
+  z-index: 1;
+}
+.left-side-content {
+  position: relative;
+  z-index: 2;
+}
+.right-side img {
+  border-radius: 0 15px 15px 0;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.btn-custom {
+  border-radius: 50px;
+  padding: 10px 20px;
+  background-color: #ffc107; /* Yellow color */
+  border-color: #ffc107; /* Yellow border */
+  color: #000; /* Black text */
+}
+.btn-custom:hover {
+  background-color: #e0a800; /* Darker yellow on hover */
+  border-color: #e0a800; /* Darker yellow border on hover */
+}
+.row-equal-height {
+  display: flex;
+}
+.story-section {
+  background-color: #f8f9fa; /* Light grey background color */
+  padding: 30px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+.story-section h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.story-section p {
+  font-size: 1rem;
+  color: #555; /* Adjust color as needed */
+}
+.content-section1 img {
+    max-width: 100%;
+    border-radius: 30px;
+}
+.section-content {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 50px;
+    color: #fdcf21;
+}
+
+.section-content {
+    margin-top: 20px;
+}
+@media(max-width:768px){
+    .section-title{
+        font-size: 1.5rem;
+    }
+}
+.list-section {
+    margin-top: 40px;
+    color: #fff;
+}
+
+.list-heading {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.list-icon {
+    font-size: 20px;
+    color: #fdcf21;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+/* .uniplus-section {
+padding: 50px 0;
+} */
+.team-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+.country-card {
+    position: relative;
+    border-radius: 8px; /* Optional: add rounded corners */
+    border: 0px;
+  }
+  
+  .country-card .image-wrapper {
+    position: relative;
+  }
+  
+  .country-card .flag-icon {
+    position: absolute;
+    bottom: -20px; /* Adjust this value based on the icon size */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
+  
+  .country-card .flag-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image covers the entire area */
+  }
+  
+  
+  .footer {
+    padding: 40px 0;
+    background-color: #0D0F17;
+}
+
+.footer h6 {
+  font-weight: bold;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer ul {
+  margin-bottom: 20px; /* Add margin between the lists */
+}
+
+.footer ul li {
+  margin-bottom: 10px; /* Add margin between the list items */
+}
+
+.alphabet {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.alphabet a {
+  margin: 0 5px;
+  color: #ffffff;
+  font-weight: bold;
+  position: relative;
+}
+
+.alphabet a:not(:last-child)::after {
+  content: '|';
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.social-icons a {
+  font-size: 24px; /* Increase font size for social media icons */
+  margin-right: 20px; /* Add gap between social media icons */
+}
+
+.social-icons a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}

@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: 40px; /* Ensure content starts below the fixed navbar */
+}
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+    color: #000;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #fdcf21;
+}
+
+/* Dropdown styling */
+.navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.navbar-nav .dropdown-item {
+    color: #000;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #fdcf21;
+    color: #fff;
+}
+
+/* Sign Up Button */
+.book-now-btn {
+    background-color: #fdcf21;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.book-now-btn:hover {
+    background-color: #fdcf21;
+    color: #fff;
+}
+/* Show dropdown on hover for large screens */
+@media (min-width: 992px) {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Prevent dropdown from closing when the mouse leaves the toggle */
+    .navbar-nav .dropdown-menu {
+        margin-top: 0; /* Align the dropdown with the parent */
+    }
+}
+
+/* Remove focus outline when clicking dropdown */
+.nav-item .nav-link:focus {
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+    .navbar-nav {
+        flex-direction: row;
+    }
+}
+
+.bg-image {
+    position: relative;
+    background-image: url(uk_cover.png); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .content {
+    padding: 30px;
+}
+.card-custom {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    text-align: center;
+            }
+    .card-custom .line {
+    width: 50px;
+    height: 5px;
+    background-color: #fdcf21;
+    margin: 0 auto 10px;
+            }
+            .card-custom h3 {
+                font-size: 25px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .card-custom p {
+                font-size: 1rem;
+                color: #555;
+            }
+            .card-customs {
+                border: 1px solid #ddd;
+                border-radius: 0px; /* No border radius */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+                margin: 15px 0;
+                padding: 20px;
+                text-align: center;
+            }
+            .card-customs img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .card-customs h5 {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .card-customs p {
+                font-size: 1rem;
+                color: #555;
+            }
+            .text_heading {
+                font-size: 25px;
+                font-weight: 500;
+            }
+            @media(max-width:768px){
+                .text_heading {
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+            }
+
+
+            .accordion {
+                border-radius: 10px; /* Adjust the border radius for the entire accordion */
+                overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+            }
+            
+            .accordion-item {
+                border: none; /* Remove individual item borders */
+                margin-bottom: 0; /* Remove bottom margin */
+                margin-top: 15px;
+            }
+            
+            .accordion-button {
+                background-color: #fff !important; /* Set your desired background color */
+                border: 1px solid #ccc; /* Add border color to buttons */
+                border-radius: 10px;
+                color: #000; /* Set text color */
+            }
+            
+            .accordion-button.collapsed {
+                background-color: #fff; /* Set background color for collapsed state */
+            }
+            
+            .accordion-button:focus {
+                box-shadow: none; /* Remove focus outline */
+            }
+            
+            .accordion-item:first-child .accordion-button {
+                border-top-left-radius: 10px; /* Add border radius to the top-left corner */
+                border-top-right-radius: 10px; /* Add border radius to the top-right corner */
+            }
+            
+            .accordion-item:last-child .accordion-button {
+                border-bottom-left-radius: 10px; /* Add border radius to the bottom-left corner */
+                border-bottom-right-radius: 10px; /* Add border radius to the bottom-right corner */
+            }
+            .content {
+                padding: 30px;
+            }
+            .footer {
+              padding: 40px 0;
+              background-color: #0D0F17;
+          }
+          
+          .footer h6 {
+            font-weight: bold;
+        }
+        
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer ul {
+            margin-bottom: 20px; /* Add margin between the lists */
+        }
+        
+        .footer ul li {
+            margin-bottom: 10px; /* Add margin between the list items */
+        }
+        
+        .alphabet {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .alphabet a {
+            margin: 0 5px;
+            color: #ffffff;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .alphabet a:not(:last-child)::after {
+            content: '|';
+            color: #ffffff;
+            margin-left: 10px;
+        }
+        
+        .social-icons a {
+            font-size: 24px; /* Increase font size for social media icons */
+            margin-right: 20px; /* Add gap between social media icons */
+        }
+        
+        .social-icons a:last-child {
+            margin-right: 0; /* Remove margin for the last icon */
+        }

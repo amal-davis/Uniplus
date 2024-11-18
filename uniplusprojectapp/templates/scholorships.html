@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'images/scholarships.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-row container" role="navigation" aria-label="Main">
+            <div class="header-left">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'images/logo.png.png' %}" alt="" style="width: 100px;">
+
+                    </a>
+                </div>
+            </div>
+            <div class="header-right">
+                <ul class="main-menu">
+                    <li class="menu-item"><a href="/">Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Study Abroad +</a>
+                        <div class="mega-menu-wrapper slideInUp">
+                            <div class="mega-menu-col">
+                                <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid">
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                   
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">About Us +</a>
+                        <div class="sub-menu-wrapper slideInUp">
+                            <ul class="sub-menu">
+                        <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <a href="#" id="hamburger-icon" class="mobile-toggler" aria-label="Mobile Menu"><i class="fas fa-bars"></i></a>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="mobile-menu hidden slideInDown">
+                <ul>
+                    <li class="menu-item"><a href="/" >Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Mega menu +</a>
+                        <div class="mega-menu-wrapper">
+                            <div class="mega-menu-col">
+                                <!-- <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid"> -->
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                  
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">Services +</a>
+                        <div class="sub-menu-wrapper">
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="bg-image">
+        <div class="bg-text">
+            <h1>Scholarships</h1>
+            
+        </div>
+    </div> -->
+    <div class="container my-5">
+        <!-- Sort/Filter Buttons -->
+        <div class="d-flex justify-content-between mb-4">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #000;color: #fff;">
+                    Filter by Country
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item filter-country" href="#" data-country="all">All</a>
+                    <a class="dropdown-item filter-country" href="#" data-country="USA">USA</a>
+                    <a class="dropdown-item filter-country" href="#" data-country="UK">UK</a>
+                    <!-- Add more countries as needed -->
+                </div>
+            </div>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop2" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #000;color: #fff;">
+                    Filter by Degree
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                    <a class="dropdown-item filter-degree" href="#" data-degree="all">All</a>
+                    <a class="dropdown-item filter-degree" href="#" data-degree="Bachelors">Bachelors</a>
+                    <a class="dropdown-item filter-degree" href="#" data-degree="Masters">Masters</a>
+                    <!-- Add more degrees as needed -->
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container my-5">
+            {% for scholarship in scholarships %}
+            <div class="card scholarship-card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center" style="padding: 20px;">
+                        {% if scholarship.image %}
+                            <img src="{{ scholarship.image.url }}" class="card-img" alt="Scholarship Image" style="width: 200px; object-fit: contain;">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ scholarship.title }}</h5>
+                            <p class="card-text">
+                                <strong>Location:</strong> {{ scholarship.location }}<br>
+                                <strong>Deadline:</strong> {{ scholarship.deadline|date:"d, M Y" }}<br>
+                                <strong>Overview:</strong> {{ scholarship.overview|slice:":150"|safe }}...
+                            </p>
+                            
+                            <div class="d-flex justify-content-between">
+                                <a class="btn" href="{% url 'scholarship_detail' scholarship.id scholarship.title|slugify %}" style="background-color: #fdcf21; color: #fff; border-radius: 0px;">
+                                    View & Apply
+                                </a>
+                                                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <footer class="footer text-white mt-5">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col-md-2">
+                        <!-- <h6>Contact Us</h6> -->
+                        <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Offering</h6>
+                        <ul class="list-unstyled ">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'about' %}">Our Story</a></li>
+                            <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Our Countries</h6>
+                        <ul class="list-unstyled">
+                            
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Top Universities</h6>
+                        <ul class="list-unstyled">
+                          {% for university in universities|slice:":5" %}
+                            <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                      
+                    <div class="col-md-2">
+                        <h6 class="mb-5">Test Prep</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                            <!-- <li><a href="#">GRE</a></li>
+                            <li><a href="#">TOEFL</a></li> -->
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="row py-2">
+                    <div class="col text-center social-icons">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+    <!-- Alphabet section in the footer -->
+    <div class="row py-2">
+        <div class="col text-center">
+            <h6 class="mb-5 mt-5">Universities</h6>
+            <div class="alphabet">
+                {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                    <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterCountryButtons = document.querySelectorAll(".filter-country");
+    const filterDegreeButtons = document.querySelectorAll(".filter-degree");
+    const scholarships = document.querySelectorAll(".scholarship-card");
+
+    filterCountryButtons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            const country = this.getAttribute("data-country");
+            filterScholarships("country", country);
+        });
+    });
+
+    filterDegreeButtons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            const degree = this.getAttribute("data-degree");
+            filterScholarships("degree", degree);
+        });
+    });
+
+    function filterScholarships(type, value) {
+        scholarships.forEach(card => {
+            const cardValue = card.getAttribute(`data-${type}`);
+            if (value === "all" || cardValue === value) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+});
+document.querySelectorAll('.filter-country').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var country = this.getAttribute('data-country');
+            var degree = document.querySelector('.filter-degree.active') ? document.querySelector('.filter-degree.active').getAttribute('data-degree') : 'all';
+            window.location.href = `?country=${country}&degree=${degree}`;
+        });
+    });
+
+    document.querySelectorAll('.filter-degree').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var degree = this.getAttribute('data-degree');
+            var country = document.querySelector('.filter-country.active') ? document.querySelector('.filter-country.active').getAttribute('data-country') : 'all';
+            window.location.href = `?country=${country}&degree=${degree}`;
+        });
+    });
+
+    document.querySelectorAll('.filter-country, .filter-degree').forEach(function(element) {
+        element.addEventListener('click', function() {
+            element.classList.add('active');
+        });
+    });
+    document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+</script>
+</body>
+</html>

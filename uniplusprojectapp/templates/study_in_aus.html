@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study In Australia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'images/study_in_australia.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-row container" role="navigation" aria-label="Main">
+            <div class="header-left">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'images/logo.png.png' %}" alt="" style="width: 100px;">
+
+                    </a>
+                </div>
+            </div>
+            <div class="header-right">
+                <ul class="main-menu">
+                    <li class="menu-item"><a href="/">Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Study Abroad +</a>
+                        <div class="mega-menu-wrapper slideInUp">
+                            <div class="mega-menu-col">
+                                <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid">
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                   
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">About Us +</a>
+                        <div class="sub-menu-wrapper slideInUp">
+                            <ul class="sub-menu">
+                        <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <a href="#" id="hamburger-icon" class="mobile-toggler" aria-label="Mobile Menu"><i class="fas fa-bars"></i></a>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="mobile-menu hidden slideInDown">
+                <ul>
+                    <li class="menu-item"><a href="/" >Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Mega menu +</a>
+                        <div class="mega-menu-wrapper">
+                            <div class="mega-menu-col">
+                                <!-- <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid"> -->
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                    
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">Services +</a>
+                        <div class="sub-menu-wrapper">
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="bg-image">
+        <div class="bg-text">
+            <h1>Study in {{ country.name }}</h1>
+        </div>
+    </div>
+    <div class="container contents mt-5">
+        <h2 class="text-center">Overview</h2>
+        <div class="row" style="margin-top: 20px;">
+            <!-- Image -->
+            <div class="col-md-4 pt-5 reveal">
+                {% if country.image %}
+                <img src="{{ country.image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 20px;">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+            </div>
+            <!-- Text -->
+            <div class="col-md-8 pt-5 reveal">
+                <p class="mt-3" style="text-align: justify;">
+                    {{ country.description|safe }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            {% for university in universities %}
+                <div class="col-md-4 mb-4 reveal">
+                    <div class="card custom-card h-100">
+                        <div class="card-header custom-card-header text-center">
+                            {% if university.logo %}
+                            <img src="{{ university.logo.url }}" class="img-fluid" alt="{{ university.name }} Logo" style="width: 200px;">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}                       
+                     </div>
+                        <div class="card-body custom-card-body text-center">
+                            <h5 class="card-title">{{ university.name }}</h5>
+                            <!-- <p class="card-text">{{ university.description|truncatewords:10 }}</p> -->
+                            <a href="{% url 'university_detail' university_id=university.id %}" class="btn" style="background-color: #fdcf21; color: #fff;">View</a>
+
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No universities available for this country.</p>
+            {% endfor %}
+
+            <a href="{% url 'dashboard_view' %}" class="btn btn-danger">apply</a>
+        </div>
+    </div>
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <!-- <h6>Contact Us</h6> -->
+                    <img src="{% static 'images/logo.png.png' %}" alt="uniplus_logo" style="width: 150px;">
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">Our Story</a></li>
+                        <li><a href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a href="{% url 'master' %}">PG Proghrame</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Our Countries</h6>
+                    <ul class="list-unstyled">
+                        
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                      {% for university in universities|slice:":5" %}
+                        <li><a href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <!-- <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li> -->
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+<!-- Alphabet section in the footer -->
+<div class="row py-2">
+    <div class="col text-center">
+        <h6 class="mb-5 mt-5">Universities</h6>
+        <div class="alphabet">
+            {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                <a href="{% url 'filter_universities_by_letter' letter %}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+        </div>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            ScrollReveal().reveal('.reveal', {
+                origin: 'bottom',
+                distance: '80px',
+                duration: 1000,
+                easing: 'ease-in-out',
+                reset: true
+            });
+        });
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

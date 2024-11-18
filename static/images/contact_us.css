@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: 40px; /* Ensure content starts below the fixed navbar */
+}
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #fdcf21;
+}
+
+/* Dropdown styling */
+.navbar-nav .dropdown-menu {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.navbar-nav .dropdown-item {
+  color: #000;
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+
+/* Sign Up Button */
+.book-now-btn {
+  background-color: #fdcf21;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.book-now-btn:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+/* Show dropdown on hover for large screens */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+  }
+
+  /* Prevent dropdown from closing when the mouse leaves the toggle */
+  .navbar-nav .dropdown-menu {
+      margin-top: 0; /* Align the dropdown with the parent */
+  }
+}
+
+/* Remove focus outline when clicking dropdown */
+.nav-item .nav-link:focus {
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .navbar-nav {
+      flex-direction: row;
+  }
+}
+
+.bg-image {
+  position: relative;
+  background-image: url(contact-cover.png); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+/* .contact-page {
+    padding: 50px 0;
+  } */
+  .contact-page .left-section {
+    padding-right: 30px;
+  }
+  .contact-page .right-section {
+    padding-left: 30px;
+  }
+  .contact-page .form-control {
+    margin-bottom: 20px;
+  }
+  .contact-page .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  .contact-page .form-control {
+    background-color: #f8f9fa; /* Custom background color */
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+  }
+  
+  .contact-page .form-control:focus {
+    border-color: #007bff; /* Border color on focus */
+    box-shadow: none; /* Remove default focus shadow */
+  }
+  .submit-message-button {
+    background-color: #fdcf21;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-message-button:hover {
+    background-color: #fcc80c;
+}
+
+.arrow {
+    margin-left: 10px;
+    font-size: 16px;
+}
+.contact-section {
+  text-align: left;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.contact-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  font-size: 28px;
+  font-weight: normal;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px;
+}
+
+.social-icon i {
+  font-size: 24px;
+  color: #555;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 576px) {
+  .social-icon {
+      width: 50px;
+      height: 50px;
+  }
+
+  .social-icon i {
+      font-size: 20px;
+  }
+}
+  .location-section {
+    margin-top: 90px;
+  }
+  .location-card {
+    margin-bottom: 30px;
+  }
+  #map-container {
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+  .footer {
+    padding: 40px 0;
+    background-color: #0D0F17;
+}
+
+.footer h6 {
+  font-weight: bold;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer ul {
+  margin-bottom: 20px; /* Add margin between the lists */
+}
+
+.footer ul li {
+  margin-bottom: 10px; /* Add margin between the list items */
+}
+
+.alphabet {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.alphabet a {
+  margin: 0 5px;
+  color: #ffffff;
+  font-weight: bold;
+  position: relative;
+}
+
+.alphabet a:not(:last-child)::after {
+  content: '|';
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.social-icons a {
+  font-size: 24px; /* Increase font size for social media icons */
+  margin-right: 20px; /* Add gap between social media icons */
+}
+
+.social-icons a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}

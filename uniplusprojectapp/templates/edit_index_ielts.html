@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+   
+<head>
+    {% load static %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniplus Educational Consultancy</title>
+    <link rel="stylesheet" href="{% static 'images/style.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-row container" role="navigation" aria-label="Main">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="{% static 'images/logo.png.png' %}" alt="" style="width: 100px;">
+                </div>
+            </div>
+            <div class="header-right">
+                <ul class="main-menu">
+                    <li class="menu-item"><a href="#" class="active">Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Study Abroad +</a>
+                        <div class="mega-menu-wrapper slideInUp">
+                            <div class="mega-menu-col">
+                                <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid">
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                    {% for country in countries %}
+                                        <li><a href="{% url 'country_detail' country_name=country.name %}">Study in {{ country.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">About Us +</a>
+                        <div class="sub-menu-wrapper slideInUp">
+                            <ul class="sub-menu">
+                        <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <a href="#" id="hamburger-icon" class="mobile-toggler" aria-label="Mobile Menu"><i class="fas fa-bars"></i></a>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="mobile-menu hidden slideInDown">
+                <ul>
+                    <li class="menu-item"><a href="#" class="active">Home</a></li>
+
+                    <li class="menu-item mega-menu">
+                        <a href="#">Mega menu +</a>
+                        <div class="mega-menu-wrapper">
+                            <div class="mega-menu-col">
+                                <!-- <img src="{% static 'images/nav_images.png' %}" alt="nav_images" class="img-fluid"> -->
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Programs</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'ug' %}">UG Programe</a></li>
+                                    <li><a href="{% url 'master' %}">PG Programe</a></li>
+                                    <!-- <li><a href="#">Menu block item 3</a></li>
+                                    <li><a href="#">Menu block item 4</a></li>
+                                    <li><a href="#">Menu block item 5</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Countries</h5>
+                                <ul class="mega-sub-menu">
+                                    {% for country in countries %}
+                                        <li><a href="{% url 'country_detail' country_name=country.name %}">Study in {{ country.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h5>Scholarship We Offer</h5>
+                                <ul class="mega-sub-menu">
+                                    <li><a href="{% url 'scholorship' %}">Scholarship</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="menu-item dropdown">
+                        <a href="#">Services +</a>
+                        <div class="sub-menu-wrapper">
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="{% url 'about' %}">Our Story</a></li>
+                        <li class="menu-item"><a href="{% url 'branches' %}">Our Branches</a></li>
+                        <li class="menu-item"><a href="{% url 'blog' %}">Blogs</a></li>
+                        <li class="menu-item"><a href="#">Students</a></li>
+                        <li class="menu-item"><a href="#">Join Us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="menu-item"><a href="#">Blog</a></li> -->
+                    <li class="menu-item"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="margin-top: 140px;">
+        <div class="heading">
+            <h1 class="text-center">Edit Index Ielts</h1>
+        </div>
+    </div>
+      <div class="container" style="margin-top: 40px;">
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <!-- Input for Image -->
+            <label for="image">Image:</label>
+            <img src="{{ content.image.url }}" style="width: 100px; height: 100px;" />
+            <br>
+            <input type="file" class="form-control" name="image" accept="image/*" >
+            <br>
+            <label for="image">Heading:</label>
+            <input type="text" class="form-control" name="title" value="{{ content.title }}"  >
+            <br>
+            <label for="image">Paragraph :</label>
+            <textarea type="text" class="form-control" name="description"   >{{ content.description }}</textarea>
+            <br>
+    
+            <label for="image">Button Text:</label>
+            <input type="text" class="form-control" name="button_text" value="{{ content.button_text }}"  >
+            <br>
+            
+    
+        
+            <!-- Input for Offline Class URL -->
+    
+            <!-- Submit Button -->
+            <input type="submit" class="btn" value="Submit" style="color:#fff ; background-color: #bd4419;">
+        </form>
+    </div>
+
+
+
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-2">
+                    <h6>Contact Us</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Offering</h6>
+                    <ul class="list-unstyled ">
+                        <li><a href="#">Free IELTS</a></li>
+                        <li><a href="#">Call with expert</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Expert Guide</a></li>
+                        <li><a href="#">Personal Guide</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Study Abroad</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Study in UK</a></li>
+                        <li><a href="#">Study in Canada</a></li>
+                        <li><a href="#">Study in Germany</a></li>
+                        <li><a href="#">Study in Ireland</a></li>
+                        <li><a href="#">Study in Australia</a></li>
+                        <li><a href="#">Study in USA</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Top Universities</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Study in UK</a></li>
+                        <li><a href="#">Study in Canada</a></li>
+                        <li><a href="#">Study in Germany</a></li>
+                        <li><a href="#">Study in Ireland</a></li>
+                        <li><a href="#">Study in Australia</a></li>
+                        <li><a href="#">Study in USA</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Test Prep</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">IELTS</a></li>
+                        <li><a href="#">GMAT</a></li>
+                        <li><a href="#">GRE</a></li>
+                        <li><a href="#">TOEFL</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="mb-5">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Latest Blogs</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col text-center social-icons">
+                    <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col text-center">
+                    <h6 class="mb-5 mt-5">Universities</h6>
+                    <div class="alphabet">
+                        <a href="#">A</a>
+                        <a href="#">B</a>
+                        <a href="#">C</a>
+                        <a href="#">D</a>
+                        <a href="#">E</a>
+                        <a href="#">F</a>
+                        <a href="#">G</a>
+                        <a href="#">H</a>
+                        <a href="#">I</a>
+                        <a href="#">J</a>
+                        <a href="#">K</a>
+                        <a href="#">L</a>
+                        <a href="#">M</a>
+                        <a href="#">N</a>
+                        <a href="#">O</a>
+                        <a href="#">P</a>
+                        <a href="#">Q</a>
+                        <a href="#">R</a>
+                        <a href="#">S</a>
+                        <a href="#">T</a>
+                        <a href="#">U</a>
+                        <a href="#">V</a>
+                        <a href="#">W</a>
+                        <a href="#">X</a>
+                        <a href="#">Y</a>
+                        <!-- Continue the alphabet letters here -->
+                        <a href="#">Z</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+
+    <script>
+        CKEDITOR.replace('description');
+
+        $(document).ready(function () {
+            $("#video-slider").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: false,
+                nav: false,
+                dots: false,
+                video: true,
+                lazyLoad: true
+            });
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            ScrollReveal().reveal('.reveal', {
+                origin: 'bottom',
+                distance: '80px',
+                duration: 1000,
+                easing: 'ease-in-out',
+                reset: true
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

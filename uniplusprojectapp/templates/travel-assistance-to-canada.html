@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travel-assistance-to-canada</title>
+    <link rel="stylesheet" href="{% static 'images/style.css'%}">
+    <link rel="icon" href="{% static 'images/fav_icon.png' %}" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    .book-now-btn {
+    background-color: #fdcf21;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.book-now-btn:hover {
+    background-color: #fdcf21;
+    color: #fff;
+}
+</style>
+<body>
+    
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom"
+    style="background-color: #fff;">
+    <div class="container position-relative">
+        <!-- Toggle Button for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Center Logo -->
+        <a class="navbar-brands mx-auto d-lg-none" href="/">
+            <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+        </a>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+            <!-- Left Section (Dropdown and Nav Links) -->
+            <ul class="navbar-nav">
+                <!-- Our Program Dropdown -->
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Our Program</a>
+                    <ul class="dropdown-menu" aria-labelledby="programDropdown">
+                        <li><a class="dropdown-item" href="{% url 'ug' %}">UG Programme</a></li>
+                        <li><a class="dropdown-item" href="{% url 'master' %}">PG Programme</a></li>
+                        {% for university in universities|slice:":5" %}
+                        <li><a class="dropdown-item"
+                                href="{% url 'university_detail' university_id=university.id %}">{{ university.name
+                                }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <!-- About Us Dropdown -->
+
+
+                <!-- Scholarship Link -->
+                <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">Scholarship</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                    <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                        <li><a class="dropdown-item" href="{% url 'about' %}">Our Story</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blog' %}">Blog</a></li>
+                        <li><a class="dropdown-item" href="{% url 'branches' %}">Our Branches</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Center Logo (Visible on Larger Screens) -->
+            <a class="navbar-brands mx-auto d-none d-lg-block" href="/">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+
+            <!-- Right Section (Contact Us and Sign Up Button) -->
+            <ul class="navbar-nav">
+                <!-- Contact Us Link -->
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+
+                <!-- Sign Up Button -->
+                <li class="nav-item">
+                    <a href="{% url 'signin_page' %}" class=" text-white nav-link btn book-now-btn">Sign Up</a>
+                </li>
+                <li class="nav-item mt-3"></li>
+                <a href="http://scholarship.uniplusglobal.com/" class=" nav-link btn book-now-btn">Scholarship Sign
+                    Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container content-section" style="margin-top: 90px;">
+    <div class="row justify-content-center">
+        <!-- Main Content Section -->
+        <div class="col-lg-12 col-md-10">
+            <h2>Congratulations on your student visa!!!</h2>
+            <h3>What next?</h3>
+            <p>Contact your Edroots International consultant and please do share your visa vignette.</p>
+
+            <p>You may qualify for certain exemptions to the quarantine and testing requirements imposed by the Canadian Government. To be exempt, you must:</p>
+
+            <ul>
+                <li>Be eligible to enter Canada. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eligibility.html" target="_blank" class="text-primary">Click here to find out if you are eligible to enter Canada</a></li>
+                <li>Have no Covid 19 Symptoms (asymptomatic)</li>
+                <li>Meet the Government of Canada requirements for fully vaccinated travellers</li>
+                <li>Have received the full series of an accepted COVID-19 vaccine or a combination of accepted vaccines.</li>
+            </ul>
+
+            <h3>Accepted vaccines in Canada:</h3>
+            <ul>
+                <li>Pfizer (Comirnaty, tozinameran, BNT162b2) – two doses</li>
+                <li>Moderna (mRNA-1273) – two doses</li>
+                <li>AstraZeneca (Vaxzevria, AZD1222, Covishield) – two doses</li>
+                <li>Janssen (Johnson & Johnson) - single dose</li>
+                <li>Sinopharm (Beijing) BBIBP-CorV (Vero Cells) - two doses</li>
+                <li>Sinovac (CoronaVac, PiCoVacc) - two doses</li>
+                <li>Bharat Biotech (Covaxin, BBV152 A, B, C) - two doses</li>
+            </ul>
+
+            <p>Have received your last dose at least 14 days prior to entering Canada and upload your proof of vaccination to the ArriveCAN app, which must be in English, French, or a certified translation into English or French.</p>
+
+            <p>
+            </p>
+
+            <p>Meet all other entry requirements including entering your information into the ArriveCAN app prior to departure. Come prepared with a suitable backup quarantine plan in case the Government of Canada does not grant you quarantine exemption upon arrival.</p>
+
+            <p>Every traveller coming into Canada must have a quarantine plan even if fully vaccinated. Not having a quarantine plan may result in being denied entry to Canada and returned to your country of origin.</p>
+
+            <h3>Important documents to carry while travelling to Canada</h3>
+            <p>You will require a passport and study permit for entry into Canada. For more travel details, please visit <a href="https://www.cic.gc.ca/english/visit/visas.asp" target="_blank" class="text-primary">www.cic.gc.ca</a>.</p>
+
+            <ul>
+                <li>Letter of Acceptance</li>
+                <li>Study Permit Approval Letter</li>
+                <li>Quarantine site contact information, including hotel address and transportation confirmation from the airport to the hotel</li>
+                <li>Contact information for your host school</li>
+                <li>Printout of your Quarantine Plan</li>
+                <li>Original Passport</li>
+                <li>Tuition fee receipt</li>
+                <li>GIC receipt</li>
+                <li>Enrollment Letter / Travel Support Letter from College/University</li>
+            </ul>
+
+            <p class="fw-bold">All the very best for your student life in Canada!</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

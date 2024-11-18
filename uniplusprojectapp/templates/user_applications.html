@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Applied</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .table {
+            margin-bottom: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        .table thead th {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+            border: none;
+        }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination .page-link {
+            color: #007bff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .modal-content {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-5">
+        <h1 class="text-center">All Course Applications</h1>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Country of Birth</th>
+                    <th>Native Language</th>
+                    <th>Course Name</th>
+                    <th>University</th>
+                    <th>Application Date</th>
+                    <th>CV/Resume</th>
+                    <th>Passport Copy</th>
+                    <th>Transcript</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>{{ application.user.first_name }}</td>
+                    <td>{{ application.user.last_name }}</td>
+                    <td>{{ application.user.email }}</td>
+                    <td>{{ application.user.userprofile.phone_number }}</td>
+                    <td>{{ application.user.userprofile.dob }}</td>
+                    <td>{{ application.user.useradditionalinfo.gender }}</td>
+                    <td>{{ application.user.useradditionalinfo.country_of_birth }}</td>
+                    <td>{{ application.user.useradditionalinfo.native_language }}</td>
+                    <td>{{ application.course.name }}</td>
+                    <td>{{ application.course.university.name }}</td>
+                    <td>{{ application.applied_on }}</td>
+                    <td>
+                        {% if application.user.mandatorydocument.cv_resume %}
+                            <a href="{{ application.user.mandatorydocument.cv_resume.url }}" download>Download</a>
+                        {% else %}
+                            No file
+                        {% endif %}
+                    </td>
+                    
+                    <td>
+                        {% if application.user.mandatorydocument.passport_copy %}
+                            <a href="{{ application.user.mandatorydocument.passport_copy.url }}" download>Download</a>
+                        {% else %}
+                            No file
+                        {% endif %}
+                    </td>
+                    
+                    <td>
+                        {% if application.user.mandatorydocument.transcript %}
+                            <a href="{{ application.user.mandatorydocument.transcript.url }}" download>Download</a>
+                        {% else %}
+                            No file
+                        {% endif %}
+                    </td>
+                    
+                    <td>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ application.id }}">
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="pending" {% if application.status == 'pending' %}selected{% endif %}>Pending</option>
+                                <option value="accepted" {% if application.status == 'accepted' %}selected{% endif %}>Accepted</option>
+                                <option value="rejected" {% if application.status == 'rejected' %}selected{% endif %}>Rejected</option>
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#messageModal{{ application.id }}">Send Message</button>
+                    </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="messageModal{{ application.id }}" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel{{ application.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="post" action="{% url 'admin_send_message' %}">
+                                {% csrf_token %}
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="messageModalLabel{{ application.id }}">Send Message to {{ application.user.first_name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="recipient_id" value="{{ application.user.id }}">
+                                    <div class="form-group">
+                                        <label for="subject{{ application.id }}">Subject</label>
+                                        <input type="text" class="form-control" id="subject{{ application.id }}" name="subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="body{{ application.id }}">Message</label>
+                                        <textarea class="form-control" id="body{{ application.id }}" name="body" rows="4" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Pagination Controls -->
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

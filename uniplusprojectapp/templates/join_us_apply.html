@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply For Openings</title>
+    <link rel="stylesheet" href="{% static 'images/style.css'%}">
+    <link rel="icon" href="{% static 'images/fav_icon.png' %}" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    .job-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #666;
+}
+
+.location, .employment-type {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.arrow-icon {
+    background-color: #fff;
+    border: 2px solid #fdcf21;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fdcf21;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.arrow-icon:hover {
+    background-color: #fdcf21;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .job-card {
+        padding: 10px;
+    }
+    .card-title {
+        font-size: 16px;
+    }
+    .card-text {
+        font-size: 12px;
+    }
+    .arrow-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+</style>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="/">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Dropdown and Nav Links) -->
+                <ul class="navbar-nav">
+                    <!-- Our Program Dropdown -->
+
+                  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Program</a>
+                        <ul class="dropdown-menu" aria-labelledby="programDropdown">
+                            <li><a class="dropdown-item" href="{% url 'ug' %}">UG Programme</a></li>
+                            <li><a class="dropdown-item" href="{% url 'master' %}">PG Programme</a></li>
+                            {% for university in universities|slice:":5" %}
+                        <li><a class="dropdown-item" href="{% url 'university_detail' university_id=university.id %}">{{ university.name }}</a></li>
+                      {% endfor %}
+                        </ul>
+                    </li>
+    
+                    <!-- About Us Dropdown -->
+                    
+    
+                    <!-- Scholarship Link -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">Scholarship</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{% url 'about' %}">Our Story</a></li>
+                            <li><a class="dropdown-item" href="{% url 'blog' %}">Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'branches' %}">Our Branches</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+    
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="/">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Contact Us and Sign Up Button) -->
+                <ul class="navbar-nav">
+                    <!-- Contact Us Link -->
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+    
+                    <!-- Sign Up Button -->
+                    <li class="nav-item">
+                        <a href="{% url 'signin_page' %}" class=" text-white nav-link btn book-now-btn">Sign Up</a>
+                    </li>
+                    <li class="nav-item mt-3"></li>
+                        <a href="http://scholarship.uniplusglobal.com/" class=" nav-link btn book-now-btn">Scholarship Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container" style="margin-top: 90px;">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="{% static 'images/Application_Submission-1.png' %}" alt="main_image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <form method="GET" action="">
+            <div class="row mb-4">
+                <!-- Work Type Filter -->
+                <div class="col-md-4">
+                    <select class="form-control" name="work_type">
+                        <option value="">Choose Work Type</option>
+                        {% for work_type in work_types %}
+                        <option value="{{ work_type }}" {% if request.GET.work_type == work_type %}selected{% endif %}>{{ work_type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <!-- Location Filter -->
+                <div class="col-md-4">
+                    <select class="form-control" name="location">
+                        <option value="">Choose Location</option>
+                        {% for location in locations %}
+                        <option value="{{ location }}" {% if request.GET.location == location %}selected{% endif %}>{{ location }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <!-- Remote Only Toggle -->
+                <div class="col-md-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="remote_only" id="remote_only" {% if request.GET.remote_only == 'on' %}checked{% endif %}>
+                        <label class="form-check-label" for="remote_only">Remote Only</label>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Search Job Title -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="search" placeholder="Search Job Title" value="{{ request.GET.search }}">
+                </div>
+            </div>
+    
+            <!-- Submit Button -->
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+    
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Loop through the jobs and display each one in a card -->
+            {% for job in jobs %}
+            <div class="col-12 mb-3">
+                <div class="card job-card">
+                    <div class="row g-0">
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">{{ job.title }}</h5>
+                                <p class="card-text">
+                                    {{ job.description|truncatewords:100|safe }}  <!-- Truncated description for the card -->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-end d-flex flex-column justify-content-center align-items-end">
+                            <p class="location">{{ job.location }}</p>
+                            <p class="employment-type">{{ job.work_type }}</p>
+                            <a href="{% url 'job_detail' job.id %}" class="arrow-icon">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        
+            <!-- If there are no jobs, display a message -->
+            {% if jobs|length == 0 %}
+            <div class="col-12">
+                <p>No job openings are currently available. Please check back later.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

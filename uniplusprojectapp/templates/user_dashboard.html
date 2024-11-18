@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-tabs" id="userDashboardTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="personal-details-tab" data-toggle="tab" href="#personal-details" role="tab" aria-controls="personal-details" aria-selected="true">Personal details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="education-tab" data-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false">Education</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="academic-interests-tab" data-toggle="tab" href="#academic-interests" role="tab" aria-controls="academic-interests" aria-selected="false">Academic Interests</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="travel-immigration-tab" data-toggle="tab" href="#travel-immigration" role="tab" aria-controls="travel-immigration" aria-selected="false">Travel & Immigration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="referee-details-tab" data-toggle="tab" href="#referee-details" role="tab" aria-controls="referee-details" aria-selected="false">Referee details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-3" id="userDashboardTabsContent">
+        <div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
+            <!-- Display personal details -->
+            <p>First Name: {{ user.first_name }}</p>
+            <p>Family Name: {{ user.last_name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Phone Number: {{ user_profile.phone_number }}</p>
+            <p>Date of Birth: {{ user_profile.dob }}</p>
+            <!-- Add more personal details as needed -->
+        </div>
+        <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
+            <!-- Display education details -->
+            {% for edu in education %}
+            <p>Country: {{ edu.country }}</p>
+            <p>Institution: {{ edu.institution }}</p>
+            <p>Course: {{ edu.course }}</p>
+            <p>Level of Study: {{ edu.level_of_study }}</p>
+            <p>Start Date: {{ edu.start_date }}</p>
+            <p>End Date: {{ edu.end_date }}</p>
+            <p>Full Time/Part Time: {{ edu.full_time_part_time }}</p>
+            <p>Grading Score: {{ edu.grading_score }}</p>
+            {% endfor %}
+            <!-- Add more education details as needed -->
+        </div>
+        <div class="tab-pane fade" id="academic-interests" role="tabpanel" aria-labelledby="academic-interests-tab">
+            <!-- Display academic interests details -->
+            {% for interest in academic_interests %}
+            <p>Level of Study: {{ interest.level_of_study }}</p>
+            <p>Discipline: {{ interest.discipline }}</p>
+            <p>Programme: {{ interest.programme }}</p>
+            <p>Start Date: {{ interest.start_date }}</p>
+            <p>Location: {{ interest.location }}</p>
+            <p>English Test: {{ interest.english_test }}</p>
+            <p>Other Test: {{ interest.other_test }}</p>
+            {% endfor %}
+            <!-- Add more academic interests details as needed -->
+        </div>
+        <div class="tab-pane fade" id="travel-immigration" role="tabpanel" aria-labelledby="travel-immigration-tab">
+            <!-- Display travel and immigration details -->
+            <p>Applied Permission: {{ travel_history.applied_permission }}</p>
+            <p>Visa Countries: {{ travel_history.visa_countries }}</p>
+            <p>Visa Rejections: {{ travel_history.visa_rejections }}</p>
+            <!-- Add more travel and immigration details as needed -->
+        </div>
+        <div class="tab-pane fade" id="referee-details" role="tabpanel" aria-labelledby="referee-details-tab">
+            <!-- Display referee details -->
+            {% for referee in referee_details %}
+            <p>Name: {{ referee.name }}</p>
+            <p>Position: {{ referee.position }}</p>
+            <p>Title: {{ referee.title }}</p>
+            <p>Work Email: {{ referee.email }}</p>
+            <p>Known Duration: {{ referee.known_duration }}</p>
+            <p>Mobile Number: {{ referee.mobile }}</p>
+            <p>Relationship: {{ referee.relationship }}</p>
+            <p>Institution: {{ referee.institution }}</p>
+            {% endfor %}
+            <!-- Add more referee details as needed -->
+        </div>
+        <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+            <!-- Display documents details -->
+            <p>CV / Resume: {{ mandatory_doc.cv_resume }}</p>
+            <p>Passport Copy: {{ mandatory_doc.passport_copy }}</p>
+            <p>Transcript: {{ mandatory_doc.transcript }}</p>
+            <!-- Display non-mandatory documents similarly -->
+            <!-- Add more document details as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- jQuery and Bootstrap JS from CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

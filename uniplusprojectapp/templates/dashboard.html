@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+
+/* Ensure no elements are wider than the viewport */
+/* .container {
+  max-width: 100%;
+} */
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+/* Remove the border around the menu icon */
+
+
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #fdcf21; /* Change color on hover */
+}
+
+/* Side menu and overlay styling */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease;
+  z-index: 9999;
+  padding-top: 60px;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 9998;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Close button styling */
+.close-btn {
+  padding: 10px;
+}
+
+.close-btn .btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #000;
+}
+
+
+  .book-now-btn {
+      background-color: #fdcf21;
+      color: #fff;
+      border-radius: 20px;
+      padding: 8px 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-left: 20px;
+      text-decoration: none;
+  }
+
+  .book-now-btn:hover {
+      background-color: #fdcf21;
+      color: #fff;
+  }
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .side-menu, .menu-overlay, .navbar-toggler {
+      display: none; /* Hide side menu and toggle on larger screens */
+  }
+
+  .navbar-nav {
+      flex-direction: row;
+  }
+}
+
+             .nav-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+        .nav-tabs .nav-item {
+            flex: 1;
+        }
+        .nav-tabs .nav-link {
+            border: 1px solid #ddd;
+            padding: 0.5rem 0.5rem; /* Reduce padding */
+            font-size: 0.75rem; /* Reduce font size */
+            text-align: center;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .tab-content {
+            padding-top: 20px;
+        }
+        .btn-group-toggle .btn {
+            border: 1px solid #ddd;
+        }
+        .card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.card-text i {
+    margin-right: 5px;
+}
+
+.card .btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.card .btn-primary:hover {
+    background-color: #004494;
+    border-color: #004494;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.img-fluid {
+    max-width: 80px;
+    max-height: 80px;
+}
+.dashboard-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+           
+        }
+        .left-section {
+            background-color: #dbe0e4; /* Off-white color */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #fdcf21; /* Change this to your desired color */
+            color: #fff;
+        }
+        .nav-tabs .nav-link {
+            color: #fdcf21; /* Change this to your desired color for inactive tabs */
+        }
+        .tab-select {
+            display: none;
+        }
+
+        /* Show the select dropdown on smaller screens and hide the tabs */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                display: none;
+            }
+            .tab-select {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-top border-bottom" style="background-color: #fff;">
+        <div class="container position-relative">
+            <!-- Toggle Button for Mobile View -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Center Logo -->
+            <a class="navbar-brands mx-auto d-lg-none" href="#">
+                <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+            </a>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <!-- Left Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ug' %}">UG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'master' %}">PG PROGRAMME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'scholorship' %}">SCHOLARSHIP</a></li>
+                </ul>
+                
+                <!-- Center Logo (Visible on Larger Screens) -->
+                <a class="navbar-brands mx-auto d-none d-lg-block" href="#">
+                    <img src="{% static 'images/logo.png.png' %}" alt="Logo" style="height: 60px;">
+                </a>
+    
+                <!-- Right Section (Navbar Links) -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">OUR STORY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'branches' %}">OUR BRANCHES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid dashboard-container" style="margin-top: 120px;">
+        <div class="d-flex justify-content-end mt-3"></div>
+        <div class="row">
+            <div class="col-md-3 text-center left-section">
+                {% if user.userprofile.profile_picture %}
+                    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+                {% else %}
+                    <img src="{% static 'images/default-profile.png' %}" alt="Default Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+                {% endif %}
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <a href="{% url 'logout' %}" class="btn btn-danger mt-5">Logout</a>
+                <!-- <a class="nav-link {% if next_tab == 'user-details' %}active{% endif %} btn btn-info mt-3" id="user-details-tab" data-toggle="tab" href="#user-details" role="tab" aria-controls="user-details" aria-selected="{% if next_tab == 'user-details' %}true{% else %}false{% endif %}">View User Details</a> -->
+            </div>
+            <div class="col-md-9">
+                <ul class="nav nav-tabs" id="formTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'user-details' %}active{% endif %}" id="user-details-tab" data-toggle="tab" href="#user-details" role="tab" aria-controls="user-details" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'personal-details' %}active{% endif %}" id="personal-details-tab" data-toggle="tab" href="#personal-details" role="tab" aria-controls="personal-details" aria-selected="true">Personal details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'education' %}active{% endif %}" id="education-tab" data-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'academic-interests' %}active{% endif %}" id="academic-interests-tab" data-toggle="tab" href="#academic-interests" role="tab" aria-controls="academic-interests" aria-selected="false">Academic Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'travel-immigration' %}active{% endif %}" id="travel-immigration-tab" data-toggle="tab" href="#travel-immigration" role="tab" aria-controls="travel-immigration" aria-selected="false">Travel & Immigration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'referee-details' %}active{% endif %}" id="referee-details-tab" data-toggle="tab" href="#referee-details" role="tab" aria-controls="referee-details" aria-selected="false">Referee details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'documents' %}active{% endif %}" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'universities' %}active{% endif %}" id="universities-tab" data-toggle="tab" href="#universities" role="tab" aria-controls="universities" aria-selected="false">Course Search</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'messages' %}active{% endif %}" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'applications' %}active{% endif %}" id="applications-tab" data-toggle="tab" href="#applications" role="tab" aria-controls="applications" aria-selected="false">Applications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if next_tab == 'notifications' %}active{% endif %}" id="notifications-tab" data-toggle="tab" href="#notifications" role="tab" aria-controls="notifications" aria-selected="false">
+                            <i class="fas fa-bell"></i> Notifications
+                        </a>
+                    </li>
+                    
+                </ul>
+                <select class="form-control tab-select mt-5" id="tabSelect">
+                    <option value="#personal-details">Personal details</option>
+                    <option value="#education">Education</option>
+                    <option value="#academic-interests">Academic Interests</option>
+                    <option value="#travel-immigration">Travel & Immigration</option>
+                    <option value="#referee-details">Referee details</option>
+                    <option value="#documents">Documents</option>
+                    <option value="#universities">Course Search</option>
+                    <option value="#messages">Messages</option>
+                    <option value="#applications">Applications</option>
+                    <option value="#scholarships">Scholarships</option>
+                    <option value="#user-details">User Details</option>
+                </select>
+                <div class="tab-content mt-3" id="formTabsContent">
+                    <div class="tab-pane fade {% if next_tab == 'personal-details' %}show active{% endif %}" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
+                        <!-- Personal details form -->
+                        <form method="post" action="{% url 'dashboard_view' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="firstName" class="required">First name</label>
+                                    <input type="text" class="form-control" name="first_name" id="firstName" value="{{ user.first_name }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="familyName" class="required">Last name</label>
+                                    <input type="text" class="form-control" name="family_name" id="familyName" value="{{ user.last_name }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email" class="required">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" value="{{ user.email }}" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phoneNumber" class="required">Mobile number</label>
+                                    <input type="tel" class="form-control" name="phone_number" id="phoneNumber" value="{{ user.userprofile.phone_number }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="dob" class="required">Date of birth</label>
+                                    <input type="date" class="form-control" name="dob" id="dob" value="{{ user.userprofile.dob|date:'Y-m-d' }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="gender" class="required">Gender</label>
+                                    <select class="form-control" name="gender" id="gender">
+                                        <option value="Male" {% if user.useradditionalinfo.gender == 'Male' %}selected{% endif %}>Male</option>
+                                        <option value="Female" {% if user.useradditionalinfo.gender == 'Female' %}selected{% endif %}>Female</option>
+                                        <option value="Other" {% if user.useradditionalinfo.gender == 'Other' %}selected{% endif %}>Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="countryOfBirth" class="required">Country of birth</label>
+                                    <input type="text" class="form-control" name="country_of_birth" id="countryOfBirth" value="{{ user.useradditionalinfo.country_of_birth }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="nativeLanguage" class="required">Native language</label>
+                                    <input type="text" class="form-control" name="native_language" id="nativeLanguage" value="{{ user.useradditionalinfo.native_language }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passportName" class="required">Name as it appears in passport</label>
+                                    <input type="text" class="form-control" name="passport_name" id="passportName" value="{{ user.useradditionalinfo.passport_name }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passportIssueLocation" class="required">Passport issue location</label>
+                                    <input type="text" class="form-control" name="passport_issue_location" id="passportIssueLocation" value="{{ user.useradditionalinfo.passport_issue_location }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passportNumber" class="required">Passport number</label>
+                                    <input type="text" class="form-control" name="passport_number" id="passportNumber" value="{{ user.useradditionalinfo.passport_number }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passportIssueDate" class="required">Issue date</label>
+                                    <input type="date" class="form-control" name="passport_issue_date" id="passportIssueDate" value="{{ user.useradditionalinfo.passport_issue_date|date:'Y-m-d' }}">
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="passportExpiryDate" class="required">Expiry date</label>
+                                    <input type="date" class="form-control" name="passport_expiry_date" id="passportExpiryDate" value="{{ user.useradditionalinfo.passport_expiry_date|date:'Y-m-d' }}">
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddressCountry" class="required">Permanent address country</label>
+                                    <input type="text" class="form-control" name="permanent_address_country" id="permanentAddressCountry" value="{{ user.useradditionalinfo.permanent_address_country }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddress1" class="required">Permanent address 1</label>
+                                    <input type="text" class="form-control" name="permanent_address_1" id="permanentAddress1" value="{{ user.useradditionalinfo.permanent_address_1 }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddress2">Permanent address 2</label>
+                                    <input type="text" class="form-control" name="permanent_address_2" id="permanentAddress2" value="{{ user.useradditionalinfo.permanent_address_2 }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddressPostcode" class="required">Permanent address postcode</label>
+                                    <input type="text" class="form-control" name="permanent_address_postcode" id="permanentAddressPostcode" value="{{ user.useradditionalinfo.permanent_address_postcode }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddressState" class="required">Permanent address state</label>
+                                    <input type="text" class="form-control" name="permanent_address_state" id="permanentAddressState" value="{{ user.useradditionalinfo.permanent_address_state }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="permanentAddressCity" class="required">Permanent address city</label>
+                                    <input type="text" class="form-control" name="permanent_address_city" id="permanentAddressCity" value="{{ user.useradditionalinfo.permanent_address_city }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddressCountry" class="required">Current address country</label>
+                                    <input type="text" class="form-control" name="current_address_country" id="currentAddressCountry" value="{{ user.useradditionalinfo.current_address_country }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddress1" class="required">Current address 1</label>
+                                    <input type="text" class="form-control" name="current_address_1" id="currentAddress1" value="{{ user.useradditionalinfo.current_address_1 }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddress2">Current address 2</label>
+                                    <input type="text" class="form-control" name="current_address_2" id="currentAddress2" value="{{ user.useradditionalinfo.current_address_2 }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddressPostcode" class="required">Current address postcode</label>
+                                    <input type="text" class="form-control" name="current_address_postcode" id="currentAddressPostcode" value="{{ user.useradditionalinfo.current_address_postcode }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddressState" class="required">Current address state</label>
+                                    <input type="text" class="form-control" name="current_address_state" id="currentAddressState" value="{{ user.useradditionalinfo.current_address_state }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentAddressCity" class="required">Current address city</label>
+                                    <input type="text" class="form-control" name="current_address_city" id="currentAddressCity" value="{{ user.useradditionalinfo.current_address_city }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emergencyContactName" class="required">Emergency contact name</label>
+                                    <input type="text" class="form-control" name="emergency_contact_name" id="emergencyContactName" value="{{ user.useradditionalinfo.emergency_contact_name }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emergencyContactPhone" class="required">Emergency contact phone</label>
+                                    <input type="tel" class="form-control" name="emergency_contact_phone" id="emergencyContactPhone" value="{{ user.useradditionalinfo.emergency_contact_phone }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emergencyContactEmail" class="required">Emergency contact email</label>
+                                    <input type="email" class="form-control" name="emergency_contact_email" id="emergencyContactEmail" value="{{ user.useradditionalinfo.emergency_contact_email }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emergencyContactRelationship" class="required">Emergency contact relationship</label>
+                                    <input type="text" class="form-control" name="emergency_contact_relationship" id="emergencyContactRelationship" value="{{ user.useradditionalinfo.emergency_contact_relationship }}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-5">Save And Continue</button>
+                        </form>
+                    </div>
+                    <!-- Education Tab -->
+                    <div class="tab-pane fade {% if next_tab == 'education' %}show active{% endif %}" id="education" role="tabpanel" aria-labelledby="education-tab">
+                        
+                        <form method="post" action="{% url 'dashboard_view' %}">
+                            {% csrf_token %}
+                            {% if education %}
+    <input type="hidden" name="education_id" value="{{ education.id }}">
+{% endif %}
+
+                        
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="educationCountry" class="required">Country</label>
+                                    <input type="text" class="form-control" name="education_country" id="educationCountry" value="{{ education.country }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="institution" class="required">Institution</label>
+                                    <input type="text" class="form-control" name="institution" id="institution" value="{{ education.institution }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="course" class="required">Course</label>
+                                    <input type="text" class="form-control" name="course" id="course" value="{{ education.course }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="levelOfStudy" class="required">Level of study</label>
+                                    <select class="form-control" name="level_of_study" id="levelOfStudy">
+                                        <option value="Undergraduate" {% if education.level_of_study == 'Undergraduate' %}selected{% endif %}>Undergraduate</option>
+                                        <option value="Postgraduate" {% if education.level_of_study == 'Postgraduate' %}selected{% endif %}>Postgraduate</option>
+                                        <option value="PhD" {% if education.level_of_study == 'PhD' %}selected{% endif %}>PhD</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="startDate" class="required">Start date</label>
+                                    <input type="date" class="form-control" name="start_date" id="startDate" value="{{ education.start_date|date:'Y-m-d' }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="endDate" class="required">End date</label>
+                                    <input type="date" class="form-control" name="end_date" id="endDate" value="{{ education.end_date|date:'Y-m-d' }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="fullTimePartTime" class="required">Full time / Part time</label>
+                                    <select class="form-control" name="full_time_part_time" id="fullTimePartTime">
+                                        <option value="Full time" {% if education.full_time_part_time == 'Full time' %}selected{% endif %}>Full time</option>
+                                        <option value="Part time" {% if education.full_time_part_time == 'Part time' %}selected{% endif %}>Part time</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="gradingScore" class="required">Grading Score</label>
+                                    <input type="text" class="form-control" name="grading_score" id="gradingScore" value="{{ education.grading_score }}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save And Continue</button>
+                        </form>
+                        
+                        
+                    </div>
+                    <!-- Academic Interests Tab -->
+                    <div class="tab-pane fade {% if next_tab == 'academic-interests' %}show active{% endif %}" id="academic-interests" role="tabpanel" aria-labelledby="academic-interests-tab">
+                        <form method="post" action="{% url 'dashboard_view' %}">
+                            {% csrf_token %}
+                            <!-- Include the academic_interests_id as a hidden field -->
+                            {% if academic_interests %}
+                                <input type="hidden" name="academic_interests_id" value="{{ academic_interests.id }}">
+                            {% endif %}
+                    
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="interestLevelOfStudy" class="required">Level of study</label>
+                                    <select class="form-control" name="interest_level_of_study" id="interestLevelOfStudy">
+                                        <option value="Undergraduate" {% if academic_interests and academic_interests.level_of_study == 'Undergraduate' %}selected{% endif %}>Undergraduate</option>
+                                        <option value="Postgraduate" {% if academic_interests and academic_interests.level_of_study == 'Postgraduate' %}selected{% endif %}>Postgraduate</option>
+                                        <option value="PhD" {% if academic_interests and academic_interests.level_of_study == 'PhD' %}selected{% endif %}>PhD</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="discipline" class="required">Discipline</label>
+                                    <input type="text" class="form-control" name="discipline" id="discipline" value="{{ academic_interests.discipline }}">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="programme" class="required">Programme</label>
+                                    <input type="text" class="form-control" name="programme" id="programme" value="{{ academic_interests.programme }}">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="interestStartDate" class="required">Start date</label>
+                                    <input type="date" class="form-control" name="interest_start_date" id="interestStartDate" value="{{ academic_interests.start_date|date:'Y-m-d' }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="location" class="required">Location</label>
+                                    <input type="text" class="form-control" name="location" id="location" value="{{ academic_interests.location }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Have you appeared for any English language test in the last two years?</label>
+                                <div class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+                                    <label class="btn btn-outline-primary {% if academic_interests and academic_interests.english_test %}active{% endif %}">
+                                        <input type="radio" name="english_test" id="englishTestYes" value="yes" {% if academic_interests and academic_interests.english_test %}checked{% endif %}> Yes
+                                    </label>
+                                    <label class="btn btn-outline-primary {% if academic_interests and not academic_interests.english_test %}active{% endif %}">
+                                        <input type="radio" name="english_test" id="englishTestNo" value="no" {% if academic_interests and not academic_interests.english_test %}checked{% endif %}> No
+                                    </label>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label>Have you appeared for any other test (Example GRE, GMAT, and SAT)?</label>
+                                <div class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+                                    <label class="btn btn-outline-primary {% if academic_interests and academic_interests.other_test %}active{% endif %}">
+                                        <input type="radio" name="other_test" id="otherTestYes" value="yes" {% if academic_interests and academic_interests.other_test %}checked{% endif %}> Yes
+                                    </label>
+                                    <label class="btn btn-outline-primary {% if academic_interests and not academic_interests.other_test %}active{% endif %}">
+                                        <input type="radio" name="other_test" id="otherTestNo" value="no" {% if academic_interests and not academic_interests.other_test %}checked{% endif %}> No
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save And Continue</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Add more tab panes as needed -->
+                    <div class="tab-pane fade {% if next_tab == 'travel-immigration' %}show active{% endif %}" id="travel-immigration" role="tabpanel" aria-labelledby="travel-immigration-tab">
+                        <form method="post" action="{% url 'dashboard_view' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="travel_history_id" value="{{ travel_historys.id }}">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Has this student applied for permission to remain in any of the following countries in the past ten years?</label>
+                                    <div class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+                                        <label class="btn btn-outline-primary {% if travel_historys and travel_historys.applied_permission %}active{% endif %}">
+                                            <input type="radio" name="travel_history" id="travelHistoryYes" value="yes" {% if travel_historys and travel_historys.applied_permission %}checked{% endif %}> Yes
+                                        </label>
+                                        <label class="btn btn-outline-primary {% if travel_historys and not travel_historys.applied_permission %}active{% endif %}">
+                                            <input type="radio" name="travel_history" id="travelHistoryNo" value="no" {% if travel_historys and not travel_historys.applied_permission %}checked{% endif %}> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Does this student need a visa to stay in any of the following countries? Please tick all that apply.</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="visa_countries" id="visaCountryUK" value="United Kingdom" {% if travel_historys and 'United Kingdom' in travel_historys.visa_countries %}checked{% endif %}>
+                                    <label class="form-check-label" for="visaCountryUK">United Kingdom</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="visa_countries" id="visaCountryNone" value="None" {% if travel_historys and 'None' in travel_historys.visa_countries %}checked{% endif %}>
+                                    <label class="form-check-label" for="visaCountryNone">None</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>For any country has this student ever been refused permission to stay or remain, refused asylum or deported?</label>
+                                <div class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+                                    <label class="btn btn-outline-primary {% if travel_historys and travel_historys.visa_rejections %}active{% endif %}">
+                                        <input type="radio" name="visa_rejections" id="visaRejectionsYes" value="yes" {% if travel_historys and travel_historys.visa_rejections %}checked{% endif %}> Yes
+                                    </label>
+                                    <label class="btn btn-outline-primary {% if travel_historys and not travel_historys.visa_rejections %}active{% endif %}">
+                                        <input type="radio" name="visa_rejections" id="visaRejectionsNo" value="no" {% if travel_historys and not travel_historys.visa_rejections %}checked{% endif %}> No
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save And Continue</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane fade {% if next_tab == 'referee-details' %}show active{% endif %}" id="referee-details" role="tabpanel" aria-labelledby="referee-details-tab">
+                        <form method="post" action="{% url 'dashboard_view' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="referee_details_id" value="{% if referee_details %}{{ referee_details.id }}{% endif %}">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="refereeName" class="required">Name</label>
+                                    <input type="text" class="form-control" name="referee_name" id="refereeName" value="{% if referee_details %}{{ referee_details.name }}{% endif %}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereePosition" class="required">Position</label>
+                                    <input type="text" class="form-control" name="referee_position" id="refereePosition" value="{% if referee_details %}{{ referee_details.position }}{% endif %}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeTitle">Title</label>
+                                    <input type="text" class="form-control" name="referee_title" id="refereeTitle" value="{% if referee_details %}{{ referee_details.title }}{% endif %}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeEmail" class="required">Work email</label>
+                                    <input type="email" class="form-control" name="referee_email" id="refereeEmail" value="{% if referee_details %}{{ referee_details.email }}{% endif %}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeKnownDuration">How long has the person known you?</label>
+                                    <input type="text" class="form-control" name="referee_known_duration" id="refereeKnownDuration" value="{% if referee_details %}{{ referee_details.known_duration }}{% endif %}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeMobile" class="required">Mobile number</label>
+                                    <input type="tel" class="form-control" name="referee_mobile" id="refereeMobile" value="{% if referee_details %}{{ referee_details.mobile }}{% endif %}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeRelationship" class="required">Relationship to you</label>
+                                    <input type="text" class="form-control" name="referee_relationship" id="refereeRelationship" value="{% if referee_details %}{{ referee_details.relationship }}{% endif %}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="refereeInstitution" class="required">Name of institution</label>
+                                    <input type="text" class="form-control" name="referee_institution" id="refereeInstitution" value="{% if referee_details %}{{ referee_details.institution }}{% endif %}" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save And Continue</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane fade {% if next_tab == 'documents' %}show active{% endif %}" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                        <form method="post" action="{% url 'dashboard_view' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h5>Mandatory Documents</h5>
+                            <div class="form-group">
+                                <label for="cvResume">CV / Resume *</label>
+                                <input type="file" class="form-control" name="cv_resume" id="cvResume" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="passportCopy">Passport copy *</label>
+                                <input type="file" class="form-control" name="passport_copy" id="passportCopy" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="transcript">Transcript *</label>
+                                <input type="file" class="form-control" name="transcript" id="transcript" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is ten (10)</small>
+                            </div>
+                            <h5>Non-Mandatory Documents</h5>
+                            <div class="form-group">
+                                <label for="highSchoolDocs">A Level / Higher secondary / High school / 12th grade</label>
+                                <input type="file" class="form-control" name="high_school_docs" id="highSchoolDocs" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicationScreenshots">Application screenshots</label>
+                                <input type="file" class="form-control" name="application_screenshots" id="applicationScreenshots" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is fifty (50)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="casCopy">CAS Copy</label>
+                                <input type="file" class="form-control" name="cas_copy" id="casCopy" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chatUpload">Chat upload</label>
+                                <input type="file" class="form-control" name="chat_upload" id="chatUpload" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is ten (10)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="disability">Disability</label>
+                                <input type="file" class="form-control" name="disability" id="disability" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="englishTestResult">English test result</label>
+                                <input type="file" class="form-control" name="english_test_result" id="englishTestResult" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is five (5)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="euSettleDocs">EU settle / Pre Settled documents</label>
+                                <input type="file" class="form-control" name="eu_settle_docs" id="euSettleDocs" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is three (3)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="oLevelDocs">O level / Senior secondary / 10th grade</label>
+                                <input type="file" class="form-control" name="o_level_docs" id="oLevelDocs" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="otherCertificates">Other certificates or diplomas</label>
+                                <input type="file" class="form-control" name="other_certificates" id="otherCertificates" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is ten (10)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="others">Others</label>
+                                <input type="file" class="form-control" name="others" id="others" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is five (5)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="pgProvisionalDegree">PG Provisional / Degree</label>
+                                <input type="file" class="form-control" name="pg_provisional_degree" id="pgProvisionalDegree" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="portfolio">Portfolio</label>
+                                <input type="file" class="form-control" name="portfolio" id="portfolio" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is ten (10)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="postAdmissionBRP">Post Admission - BRP</label>
+                                <input type="file" class="form-control" name="post_admission_brp" id="postAdmissionBRP" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="postAdmissionTTReceipt">Post Admission - TT/Deposit receipt</label>
+                                <input type="file" class="form-control" name="post_admission_tt_receipt" id="postAdmissionTTReceipt" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="postAdmissionVisa">Post Admission - Visa</label>
+                                <input type="file" class="form-control" name="post_admission_visa" id="postAdmissionVisa" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="referenceLetter">Reference letter</label>
+                                <input type="file" class="form-control" name="reference_letter" id="referenceLetter" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is three (3)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="statementOfPurpose">Statement of purpose</label>
+                                <input type="file" class="form-control" name="statement_of_purpose" id="statementOfPurpose" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is eight (8)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="ugProvisionalDegree">UG Provisional / Degree</label>
+                                <input type="file" class="form-control" name="ug_provisional_degree" id="ugProvisionalDegree" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is two (2)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="universityApplicationDocs">University application documents</label>
+                                <input type="file" class="form-control" name="university_application_docs" id="universityApplicationDocs" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is ten (10)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="visaRefusal">Visa refusal</label>
+                                <input type="file" class="form-control" name="visa_refusal" id="visaRefusal" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is three (3)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="workExperienceCertificate">Work experience certificate</label>
+                                <input type="file" class="form-control" name="work_experience_certificate" id="workExperienceCertificate" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" multiple>
+                                <small class="form-text text-muted">Maximum number of documents allowed is three (3)</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-5">Save</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade {% if next_tab == 'universities' %}show active{% endif %}" id="universities" role="tabpanel" aria-labelledby="universities-tab">
+                        <div class="container mt-5">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <form method="get" action="{% url 'filter_universities' %}">
+                                        <div class="form-group">
+                                            <label for="filterCountry">Country</label>
+                                            <select class="form-control" id="filterCountry" name="country">
+                                                <option value="">Select Country</option>
+                                                {% for country in countries %}
+                                                <option value="{{ country.id }}" {% if country_id|stringformat:"s" == country.id|stringformat:"s" %}selected{% endif %}>{{ country.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Filter by Country</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form method="get" action="{% url 'filter_universities' %}">
+                                        <div class="form-group">
+                                            <label for="filterAlphabet">Filter by Alphabet</label>
+                                            <div class="d-flex flex-wrap">
+                                                {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+                                                <button type="submit" class="btn btn-link" name="alphabet" value="{{ letter }}">{{ letter }}</button>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% if universities %}
+                                    {% for university in universities %}
+                                    <div class="col-md-12 mb-4">
+                                        <div class="card shadow-sm">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-2 text-center">
+                                                        <img src="{{ university.logo.url }}" class="img-fluid" alt="{{ university.name }}">
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <h4 class="card-title">{{ university.name }}</h4>
+                                                        <p class="card-text">
+                                                            <i class="fa fa-graduation-cap"></i> {{ university.courses.count }} Courses
+                                                            {% if university.scholarships_available %}
+                                                            | <i class="fa fa-book"></i> <a href="#">Scholarships Available</a>
+                                                            {% endif %}
+                                                        </p>
+                                                        <p class="card-text">
+                                                            <i class="fa fa-map-marker"></i> {{ university.country.name }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-3 text-right">
+                                                        <a href="{% url 'university_details' university.id %}" class="btn btn-primary">View Courses</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col-md-12">
+                                        <p>No universities found for the selected filters.</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                    
+                            <!-- Pagination Controls -->
+                            <nav aria-label="Page navigation" class="mt-5">
+                                <ul class="pagination justify-content-center">
+                                    {% if universities.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?uni_page=1" aria-label="First">
+                                                <span aria-hidden="true">&laquo;&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?uni_page={{ universities.previous_page_number }}" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                    
+                                    {% for num in universities.paginator.page_range %}
+                                        {% if universities.number == num %}
+                                            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                                        {% elif num > universities.number|add:'-3' and num < universities.number|add:'3' %}
+                                            <li class="page-item"><a class="page-link" href="?uni_page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                    
+                                    {% if universities.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?uni_page={{ universities.next_page_number }}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?uni_page={{ universities.paginator.num_pages }}" aria-label="Last">
+                                                <span aria-hidden="true">&raquo;&raquo;</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <div class="tab-pane fade {% if next_tab == 'messages' %}show active{% endif %}" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                        <h3 class="text-center">Your Messages</h3>
+                        {% if messages %}
+                            <ul class="list-group mt-5">
+                                {% for message in messages %}
+                                <li class="list-group-item">
+                                    <h5>{{ message.subject }}</h5>
+                                    <p>{{ message.body }}</p>
+                                    <small class="text-muted">Sent on: {{ message.sent_on }}</small>
+                                    {% if not message.read %}
+                                        <span class="badge badge-pill badge-primary">New</span>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No messages found.</p>
+                        {% endif %}
+                        <h3 class="text-center mt-5">Send a Message to Admin</h3>
+                    <form method="post" action="{% url 'dashboard_view' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="send_message" value="1">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="body">Message</label>
+                            <textarea class="form-control" id="body" name="body" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    </div>
+                    <div class="tab-pane fade {% if next_tab == 'applications' %}show active{% endif %}" id="applications" role="tabpanel" aria-labelledby="applications-tab">
+                        <h3 class="text-center">University Applications</h3>
+                        {% if applications %}
+                            <table class="table table-striped mt-5">
+                                <thead>
+                                    <tr>
+                                        <th>Course Name</th>
+                                        <th>University</th>
+                                        <th>Applied On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for application in applications %}
+                                    <tr>
+                                        <td>{{ application.course.name }}</td>
+                                        <td>{{ application.course.university.name }}</td>
+                                        <td>{{ application.applied_on }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p>No applications found.</p>
+                        {% endif %}
+                    
+                       
+                    </div>
+                    
+                    <div class="tab-pane fade {% if next_tab == 'user-details' %}show active{% endif %}" id="user-details" role="tabpanel" aria-labelledby="user-details-tab">
+                        <div class="card">
+                            <div class="card-header">
+                               Profile
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                                <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                                <p class="card-text"><strong>Phone Number:</strong> {{ user.userprofile.phone_number }}</p>
+                                <p class="card-text"><strong>Nationality:</strong> {{ user.userprofile.nationality }}</p>
+                                <p class="card-text"><strong>Date of Birth:</strong> {{ user.userprofile.dob }}</p>
+                                <p class="card-text"><strong>Study Country:</strong> {{ user.userprofile.study_country }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade {% if next_tab == 'notifications' %}show active{% endif %}" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                        <div class="notifications mt-5">
+                            <h3>Notifications</h3>
+                            {% if notifications %}
+                                <ul class="list-group">
+                                    {% for notification in notifications %}
+                                        <li class="list-group-item">
+                                            {{ notification.message }}
+                                            <br><small>{{ notification.created_at }}</small>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>No new notifications.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- jQuery and Bootstrap JS from CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+$(document).ready(function() {
+    var nextTab = "{{ next_tab }}";
+    if (nextTab) {
+        $('.nav-link[href="#' + nextTab + '"]').tab('show');
+        $('#tabSelect').val('#' + nextTab);
+    }
+
+    $('#tabSelect').on('change', function() {
+        var selectedTab = $(this).val();
+        $('.nav-link[href="' + selectedTab + '"]').tab('show');
+    });
+
+    // Sync tab click with select dropdown
+    $('.nav-link').on('shown.bs.tab', function(e) {
+        var activeTab = $(e.target).attr('href');
+        $('#tabSelect').val(activeTab);
+    });
+});
+
+document.getElementById('hamburger-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });    
+</script>
+</body>
+</html>

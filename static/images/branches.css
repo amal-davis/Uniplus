@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: 40px; /* Ensure content starts below the fixed navbar */
+}
+
+/* Navbar links styling */
+.navbar-nav .nav-item .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #fdcf21;
+}
+
+/* Dropdown styling */
+.navbar-nav .dropdown-menu {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.navbar-nav .dropdown-item {
+  color: #000;
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+
+/* Sign Up Button */
+.book-now-btn {
+  background-color: #fdcf21;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.book-now-btn:hover {
+  background-color: #fdcf21;
+  color: #fff;
+}
+/* Show dropdown on hover for large screens */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+  }
+
+  /* Prevent dropdown from closing when the mouse leaves the toggle */
+  .navbar-nav .dropdown-menu {
+      margin-top: 0; /* Align the dropdown with the parent */
+  }
+}
+
+/* Remove focus outline when clicking dropdown */
+.nav-item .nav-link:focus {
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .navbar-nav {
+      flex-direction: row;
+  }
+}
+
+
+html, body {
+    height: 100%;
+  }
+  body {
+    background-color: #fff;
+    
+  }
+  
+  
+  
+  
+  .map-container {
+    position: relative;
+    width: 90%; /* The map will take up 90% of the viewport width */
+    max-width: 1000px; /* Limit the max width to prevent it from growing too large on big screens */
+    margin: 0 auto;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+}
+
+.location-marker {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Tooltip styling */
+.tooltip-country {
+    display: none;
+    position: absolute;
+    background-color: #111;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.location-marker:hover + .tooltip-country {
+    display: block;
+}
+
+/* Marker positions - adjust these values based on the map locations */
+.marker-india {
+    top: 40.5%;
+    left: 66.5%;
+}
+
+.marker-uk {
+    top: 15%;
+    left: 42%;
+}
+
+.marker-uae {
+    top: 37%;
+    left: 56%;
+}
+/* Responsive tooltips and marker adjustments for smaller screens */
+@media (max-width: 768px) {
+  .location-marker {
+      width: 15px;
+      height: 15px;
+  }
+
+  .tooltip-country {
+      font-size: 10px;
+      padding: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+  .location-marker {
+      width: 10px;
+      height: 10px;
+  }
+
+  .tooltip-country {
+      font-size: 8px;
+      padding: 2px;
+  }
+}
+.address-box {
+  border: 2px solid #d4af37; /* Golden border */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Light background for the address box */
+  margin-bottom: 20px;
+}
+
+.address-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #d4af37; /* Golden color for titles */
+}
+  .footer {
+    padding: 40px 0;
+    background-color: #0D0F17;
+  }
+  
+  .footer h6 {
+  font-weight: bold;
+  }
+  
+  .footer a {
+  color: #ffffff;
+  text-decoration: none;
+  }
+  
+  .footer a:hover {
+  text-decoration: underline;
+  }
+  
+  .footer ul {
+  margin-bottom: 20px; /* Add margin between the lists */
+  }
+  
+  .footer ul li {
+  margin-bottom: 10px; /* Add margin between the list items */
+  }
+  
+  .alphabet {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  }
+  
+  .alphabet a {
+  margin: 0 5px;
+  color: #ffffff;
+  font-weight: bold;
+  position: relative;
+  }
+  
+  .alphabet a:not(:last-child)::after {
+  content: '|';
+  color: #ffffff;
+  margin-left: 10px;
+  }
+  
+  .social-icons a {
+  font-size: 24px; /* Increase font size for social media icons */
+  margin-right: 20px; /* Add gap between social media icons */
+  }
+  
+  .social-icons a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+  }
